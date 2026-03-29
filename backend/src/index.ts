@@ -39,9 +39,6 @@ app.get('/admin/quote/:token', (req, res) => {
 
 app.use('/api/inquiries', inquiriesRouter);
 
-import path from 'path';
-app.use(express.static(path.join(__dirname, '../../frontend')));
-
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Internal server error' });
