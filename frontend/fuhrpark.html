@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unser Fuhrpark - Taxi Freising</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+    </a>
+  </div>
+  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="preise.html">Preise</a></li>
+      <li><a href="anfrage.html">Online Buchen</a></li>
+      <li><a href="fuhrpark.html" class="active">Fuhrpark</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section style="padding: 80px 32px; background: var(--surface);">
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 48px;">Unser Fuhrpark</h1>
+
+    <div class="services-grid" style="margin-bottom: 48px;">
+      <div class="service-card">
+        <div class="service-icon">🚗</div>
+        <h3>Kombi</h3>
+        <p>Komfortable und geräumige Fahrzeuge für bis zu 4 Fahrgäste mit ausreichend Gepäckraum.</p>
+        <ul style="list-style: none; text-align: left; margin-top: 12px; color: var(--text-secondary); font-size: 13px;">
+          <li>✓ Bis zu 4 Fahrgäste</li>
+          <li>✓ Großer Gepäckraum</li>
+          <li>✓ Komfortable Sitze</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🚐</div>
+        <h3>Van</h3>
+        <p>Geräumige Fahrzeuge für größere Gruppen und umfangreiches Gepäck.</p>
+        <ul style="list-style: none; text-align: left; margin-top: 12px; color: var(--text-secondary); font-size: 13px;">
+          <li>✓ Bis zu 8 Fahrgäste</li>
+          <li>✓ Sehr großer Gepäckraum</li>
+          <li>✓ Rollstuhlgerecht</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🚙</div>
+        <h3>Limousine</h3>
+        <p>Luxuriöse Fahrzeuge für exklusive Transfers und Business-Fahrten.</p>
+        <ul style="list-style: none; text-align: left; margin-top: 12px; color: var(--text-secondary); font-size: 13px;">
+          <li>✓ Bis zu 4 Fahrgäste</li>
+          <li>✓ Premium-Ausstattung</li>
+          <li>✓ Ideal für Business</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+      <h2 style="margin-bottom: 32px;">Ausstattung unserer Fahrzeuge</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+        <div>
+          <h4 style="color: var(--accent); margin-bottom: 12px;">Komfort & Sicherheit</h4>
+          <ul style="list-style: none; color: var(--text-secondary);">
+            <li>✓ Klimaanlage</li>
+            <li>✓ USB-Ladestationen</li>
+            <li>✓ Kostenlose Mineralwasser</li>
+            <li>✓ ABS & Airbags</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: var(--accent); margin-bottom: 12px;">Für Kinder</h4>
+          <ul style="list-style: none; color: var(--text-secondary);">
+            <li>✓ Babyschale (kostenlos)</li>
+            <li>✓ Kindersitze (kostenlos)</li>
+            <li>✓ Sitzerhöher (kostenlos)</li>
+            <li>✓ Sicherheitsgurte</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: var(--accent); margin-bottom: 12px;">Gepäck & Extras</h4>
+          <ul style="list-style: none; color: var(--text-secondary);">
+            <li>✓ Großer Gepäckraum</li>
+            <li>✓ Dachgepäckträger (optional)</li>
+            <li>✓ Rollstuhlrampe (Van)</li>
+            <li>✓ WiFi (optional)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Taxi Freising</h4>
+        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p>
+          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
+          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
+        </p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="preise.html">Preise</a></li>
+          <li><a href="anfrage.html">Buchen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="agb.html">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
+      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

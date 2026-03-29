@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buchung bestätigen - Taxi Freising</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .confirmation-box { background: var(--green-light); border: 2px solid var(--green); border-radius: 12px; padding: 32px; margin: 32px 0; text-align: center; }
+    .confirmation-box h2 { color: var(--green); font-size: 28px; margin-bottom: 16px; }
+    .confirmation-box p { color: var(--text-secondary); font-size: 15px; }
+    .price-display { font-size: 48px; font-weight: 800; color: var(--green); margin: 24px 0; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+    </a>
+  </div>
+  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="leistungen.html">Leistungen</a></li>
+      <li><a href="preise.html">Tarife</a></li>
+      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section style="padding: 80px 32px; background: var(--surface);">
+  <div class="container" style="max-width: 640px;">
+    <h1 style="text-align: center; margin-bottom: 48px;">Buchung bestätigen</h1>
+
+    <div id="loadingBox" style="text-align: center;">
+      <p>Laden...</p>
+    </div>
+
+    <div id="confirmationBox" style="display: none;">
+      <div class="confirmation-box">
+        <h2>🎉 Ihre Buchung</h2>
+        <p id="quoteMessage"></p>
+      </div>
+
+      <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 24px;">
+        <h3 style="margin-bottom: 24px;">Fahrtdetails</h3>
+        <table style="width: 100%; margin-bottom: 24px;">
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary); width: 40%;">Von:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="abholort">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Nach:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="zielort">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Datum:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="datum">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Uhrzeit:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="zeit">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Fahrgäste:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="fahrgaeste">-</td>
+          </tr>
+        </table>
+
+        <div style="border-top: 1px solid var(--border); padding-top: 24px; margin-top: 24px;">
+          <p style="color: var(--text-secondary); margin-bottom: 8px;">Gesamtpreis:</p>
+          <div class="price-display" id="price">-</div>
+        </div>
+      </div>
+
+      <button id="confirmBtn" class="btn-primary" style="width: 100%; padding: 16px; margin-bottom: 16px;">
+        Buchung verbindlich bestätigen
+      </button>
+
+      <button onclick="window.history.back()" class="btn-secondary" style="width: 100%; padding: 16px;">
+        Zurück
+      </button>
+    </div>
+
+    <div id="successBox" style="display: none;">
+      <div class="confirmation-box">
+        <h2>✓ Buchung erfolgreich!</h2>
+        <p>Vielen Dank für Ihre Buchung. Eine Bestätigungsemail wurde Ihnen zugesandt.</p>
+      </div>
+      <p style="text-align: center; color: var(--text-secondary); margin-top: 24px;">
+        Bei Fragen kontaktieren Sie uns: <a href="tel:+4915141620000" style="color: var(--accent);">+49 151 4162 0000</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Taxi Freising</h4>
+        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p>
+          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
+          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
+        </p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="preise.html">Preise</a></li>
+          <li><a href="anfrage.html">Buchen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="agb.html">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
+      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const API_URL = 'http://localhost:4002/api';
+
+document.addEventListener('DOMContentLoaded', async function() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+
+  if (!token) {
+    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Ungültiger Link</p>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/inquiries/quote-data/${token}`);
+    const data = await res.json();
+
+    if (!res.ok) {
+      document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Fehler beim Laden der Daten</p>';
+      return;
+    }
+
+    document.getElementById('abholort').textContent = data.abholort;
+    document.getElementById('zielort').textContent = data.zielort;
+    document.getElementById('datum').textContent = data.abholdatum;
+    document.getElementById('zeit').textContent = data.abholzeit + ' Uhr';
+    document.getElementById('fahrgaeste').textContent = data.fahrgaeste + ' Person(en)';
+    document.getElementById('price').textContent = data.quoted_price + ' €';
+
+    if (data.status === 'confirmed') {
+      document.getElementById('confirmationBox').style.display = 'none';
+      document.getElementById('loadingBox').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+      document.getElementById('quoteMessage').textContent = 'Ihre Buchung ist bereits bestätigt!';
+    } else {
+      document.getElementById('loadingBox').style.display = 'none';
+      document.getElementById('confirmationBox').style.display = 'block';
+      document.getElementById('quoteMessage').textContent = 'Bitte bestätigen Sie Ihre Buchung:';
+
+      document.getElementById('confirmBtn').addEventListener('click', async function() {
+        this.disabled = true;
+        this.textContent = 'Wird bestätigt...';
+
+        try {
+          const confirmRes = await fetch(`${API_URL}/inquiries/confirm/${token}`, { method: 'POST' });
+          if (confirmRes.ok) {
+            document.getElementById('confirmationBox').style.display = 'none';
+            document.getElementById('successBox').style.display = 'block';
+          } else {
+            alert('Fehler bei der Bestätigung. Bitte versuchen Sie es später erneut.');
+            this.disabled = false;
+            this.textContent = 'Buchung verbindlich bestätigen';
+          }
+        } catch (err) {
+          alert('Verbindungsfehler');
+          this.disabled = false;
+          this.textContent = 'Buchung verbindlich bestätigen';
+        }
+      });
+    }
+  } catch (err) {
+    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Fehler beim Laden</p>';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarife - Taxi Freising</title>
+  <meta name="description" content="Taxitarife Freising – Grundpreise und Festpreise. Mindestfahrpreis 5,70€, Kilometerpreis 2,50€.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+    </a>
+  </div>
+  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="leistungen.html">Leistungen</a></li>
+      <li><a href="preise.html" class="active">Tarife</a></li>
+      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section style="background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%); color:#fff; padding: 48px 32px; text-align:center;">
+  <h1 style="font-size:36px;margin-bottom:12px;">Tarife</h1>
+  <p style="opacity:0.85;">Transparente Preise ohne versteckte Kosten</p>
+</section>
+
+<section style="padding: 64px 32px; background: var(--surface);">
+  <div class="container" style="max-width: 800px;">
+
+    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);padding:40px;margin-bottom:32px;">
+      <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:24px;">
+        Wir befördern Sie im Pflichtfahrgebiet der Landkreise Freising, Erding und Landeshauptstadt München – ausschliesslich zu den geltenden Taxitarifen!
+      </p>
+
+      <h2 style="color:var(--brand);font-size:20px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);">Grundpreise</h2>
+
+      <table style="width:100%;border-collapse:collapse;margin-bottom:40px;">
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:14px 0;color:var(--text-secondary);">Mindestfahrpreis</td>
+          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">5,70 €</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 0 12px;font-size:13px;color:var(--text-muted);" colspan="2">Mit Beginn der Fahrt wird die Grundgebühr fällig</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:14px 0;color:var(--text-secondary);">Kilometerpreis</td>
+          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">2,50 €</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 0 12px;font-size:13px;color:var(--text-muted);" colspan="2">Pro gefahrenen Kilometer bezahlen Sie bei uns</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:14px 0;color:var(--text-secondary);">Wartezeit pro Stunde</td>
+          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">38,00 €</td>
+        </tr>
+        <tr>
+          <td style="padding:4px 0 12px;font-size:13px;color:var(--text-muted);" colspan="2">Auch verkehrsbedingt</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:14px 0;color:var(--text-secondary);">Zuschlag ab dem fünften Fahrgast</td>
+          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">10,00 €</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 0;color:var(--text-secondary);">Zuschlag für die Fahrradmitnahme</td>
+          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">7,50 €</td>
+        </tr>
+      </table>
+
+      <h2 style="color:var(--brand);font-size:20px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);">Festpreise</h2>
+
+      <table style="width:100%;border-collapse:collapse;margin-bottom:32px;">
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:14px 0;">
+            <div style="font-weight:600;color:var(--text);margin-bottom:4px;">Flughafen – Messe</div>
+            <div style="font-size:13px;color:var(--text-muted);">Beide Richtungen auf kürzestem Weg</div>
+          </td>
+          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:22px;color:var(--brand);">90,00 €</td>
+        </tr>
+      </table>
+
+      <div style="background:var(--surface);border-radius:8px;padding:20px 24px;">
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">
+          Für weitere Strecken und individuelle Angebote kontaktieren Sie uns bitte direkt. Wir erstellen Ihnen gerne ein maßgeschneidertes Angebot.
+        </p>
+      </div>
+    </div>
+
+    <!-- Inklusivleistungen -->
+    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);padding:40px;margin-bottom:32px;">
+      <h2 style="color:var(--brand);font-size:20px;margin-bottom:20px;">Was ist inklusive?</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
+          <span style="color:var(--green);font-size:20px;">✓</span>
+          <span style="font-size:14px;color:var(--text-secondary);">Kindersitze kostenlos</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
+          <span style="color:var(--green);font-size:20px;">✓</span>
+          <span style="font-size:14px;color:var(--text-secondary);">Gepäckservice</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
+          <span style="color:var(--green);font-size:20px;">✓</span>
+          <span style="font-size:14px;color:var(--text-secondary);">60 Min. Wartezeit (Flughafen)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
+          <span style="color:var(--green);font-size:20px;">✓</span>
+          <span style="font-size:14px;color:var(--text-secondary);">Namensschild bei Abholung</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="anfrage.html" class="btn-primary" style="padding:16px 48px;">Jetzt Angebot anfordern</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Taxi Freising</h4>
+        <p>N &amp; N Taxi GbR<br>Eisvogelweg 2<br>85356 Freising</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p>
+          <a href="tel:+4915141620000">0151 4162 0000</a><br>
+          <a href="mailto:taxi@taxifreising.de">taxi@taxifreising.de</a>
+        </p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="preise.html">Tarife</a></li>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Online Buchen</h4>
+        <ul>
+          <li><a href="anfrage.html">Anfrage senden</a></li>
+          <li><a href="mailto:taxi@taxifreising.de">Per E-Mail buchen</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
+      <p>&copy; 2026 Taxi Freising – N &amp; N Taxi GbR. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

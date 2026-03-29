@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angebot erstellen - Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <div class="logo-text">Taxi Freising<small>Admin Panel</small></div>
+    </a>
+  </div>
+</header>
+
+<section style="padding: 80px 32px; background: var(--surface);">
+  <div class="container" style="max-width: 640px;">
+    <h1 style="text-align: center; margin-bottom: 48px;">Angebot erstellen</h1>
+
+    <div id="loadingBox" style="text-align: center;">
+      <p>Laden...</p>
+    </div>
+
+    <div id="quoteForm" style="display: none;">
+      <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 24px;">
+        <h3 style="margin-bottom: 24px;">Fahrtdetails</h3>
+        <table style="width: 100%; margin-bottom: 24px;">
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary); width: 40%;">Kunde:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="customer">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Von:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="abholort">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Nach:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="zielort">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Datum:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="datum">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: var(--text-secondary);">Fahrgäste:</td>
+            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="fahrgaeste">-</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        <h3 style="margin-bottom: 24px;">Angebot</h3>
+
+        <div class="form-group">
+          <label>Festpreis in Euro *</label>
+          <input type="number" id="price" min="0" step="0.01" placeholder="z.B. 45.00" required>
+        </div>
+
+        <div class="form-group">
+          <label>Optionaler Hinweis für Kunden</label>
+          <textarea id="note" placeholder="z.B. Zusätzliche Parkgebühren möglich" style="min-height: 80px;"></textarea>
+        </div>
+
+        <button id="submitBtn" class="btn-primary" style="width: 100%; padding: 16px;">
+          Angebot senden
+        </button>
+      </div>
+    </div>
+
+    <div id="successBox" style="display: none;">
+      <div style="background: var(--green-light); border: 2px solid var(--green); border-radius: 12px; padding: 32px; text-align: center;">
+        <h2 style="color: var(--green); margin-bottom: 16px;">✓ Angebot versendet!</h2>
+        <p style="color: var(--text-secondary);">Das Angebot wurde per E-Mail an den Kunden gesendet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Taxi Freising</h4>
+        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p>
+          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
+          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
+        </p>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
+      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const API_URL = 'http://localhost:4002/api';
+
+document.addEventListener('DOMContentLoaded', async function() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+
+  if (!token) {
+    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Ungültiger Link</p>';
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_URL}/inquiries/quote/${token}`);
+    const data = await res.json();
+
+    if (!res.ok) {
+      document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Anfrage nicht gefunden</p>';
+      return;
+    }
+
+    document.getElementById('customer').textContent = `${data.anrede} ${data.vorname} ${data.nachname}`;
+    document.getElementById('abholort').textContent = data.abholort;
+    document.getElementById('zielort').textContent = data.zielort;
+    document.getElementById('datum').textContent = data.abholdatum + ' um ' + data.abholzeit + ' Uhr';
+    document.getElementById('fahrgaeste').textContent = data.fahrgaeste + ' Person(en)';
+
+    document.getElementById('loadingBox').style.display = 'none';
+    document.getElementById('quoteForm').style.display = 'block';
+
+    document.getElementById('submitBtn').addEventListener('click', async function() {
+      const price = document.getElementById('price').value;
+      const note = document.getElementById('note').value;
+
+      if (!price) {
+        alert('Bitte geben Sie einen Preis ein');
+        return;
+      }
+
+      this.disabled = true;
+      this.textContent = 'Wird versendet...';
+
+      try {
+        const submitRes = await fetch(`${API_URL}/inquiries/quote/${token}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ price: parseFloat(price), admin_note: note || null })
+        });
+
+        if (submitRes.ok) {
+          document.getElementById('quoteForm').style.display = 'none';
+          document.getElementById('successBox').style.display = 'block';
+        } else {
+          alert('Fehler beim Versenden. Bitte versuchen Sie es später erneut.');
+          this.disabled = false;
+          this.textContent = 'Angebot senden';
+        }
+      } catch (err) {
+        alert('Verbindungsfehler');
+        this.disabled = false;
+        this.textContent = 'Angebot senden';
+      }
+    });
+  } catch (err) {
+    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Fehler beim Laden</p>';
+  }
+});
+</script>
+</body>
+</html>

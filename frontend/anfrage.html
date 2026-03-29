@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Buchen - Taxi Freising</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+    </a>
+  </div>
+  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="leistungen.html">Leistungen</a></li>
+      <li><a href="preise.html">Tarife</a></li>
+      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section style="padding: 80px 32px; background: var(--surface);">
+  <div class="container">
+    <h1 style="text-align: center; margin-bottom: 48px;">Online Buchen</h1>
+
+    <div class="form-section">
+      <div id="successBox">
+        <h3>✓ Anfrage gesendet!</h3>
+        <p>Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze mit einem Angebot.</p>
+      </div>
+
+      <form id="anfrageForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Anrede *</label>
+            <select name="anrede" required>
+              <option value="">-- Bitte wählen --</option>
+              <option value="Herr">Herr</option>
+              <option value="Frau">Frau</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Vorname *</label>
+            <input type="text" name="vorname" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nachname *</label>
+            <input type="text" name="nachname" required>
+          </div>
+          <div class="form-group">
+            <label>E-Mail *</label>
+            <input type="email" name="email" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Telefon *</label>
+          <input type="tel" name="phone" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Abholort *</label>
+            <input type="text" name="abholort" placeholder="z.B. Freising, Hauptstraße 1" required>
+          </div>
+          <div class="form-group">
+            <label>Zielort *</label>
+            <input type="text" name="zielort" placeholder="z.B. München Flughafen" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Abholdatum *</label>
+            <input type="date" name="abholdatum" required>
+          </div>
+          <div class="form-group">
+            <label>Abholzeit *</label>
+            <input type="time" name="abholzeit" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Anzahl Fahrgäste *</label>
+            <input type="number" name="fahrgaeste" min="1" required>
+          </div>
+          <div class="form-group">
+            <label>Fahrzeugwunsch</label>
+            <select name="fahrzeug">
+              <option value="">-- Keine Angabe --</option>
+              <option value="Kombi">Kombi</option>
+              <option value="Van">Van</option>
+              <option value="Limousine">Limousine</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Anzahl Gepäckstücke</label>
+            <input type="number" name="gepaeck" min="0" value="0">
+          </div>
+          <div class="form-group">
+            <label>Flugnummer (falls relevant)</label>
+            <input type="text" name="flugnummer">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Anmerkungen</label>
+          <textarea name="anmerkungen" placeholder="z.B. besondere Wünsche oder Anforderungen"></textarea>
+        </div>
+
+        <div style="background: var(--green-light); border: 1px solid #a7f3d0; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+          <h4 style="color: var(--green); margin-bottom: 12px;">Kindersitze</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label>👶 Babyschale (0-2 Jahre)</label>
+              <input type="number" name="kindersitz_baby" min="0" value="0">
+            </div>
+            <div class="form-group">
+              <label>🧒 Kindersitz (2-12 Jahre)</label>
+              <input type="number" name="kindersitz_kinder" min="0" value="0">
+            </div>
+            <div class="form-group">
+              <label>📦 Sitzerhöher</label>
+              <input type="number" name="kindersitz_sitz" min="0" value="0">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-primary" style="width: 100%; padding: 16px;">
+          Anfrage senden / Send Request
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Taxi Freising</h4>
+        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <p>
+          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
+          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
+        </p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="preise.html">Preise</a></li>
+          <li><a href="anfrage.html">Buchen</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="agb.html">AGB</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
+      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
