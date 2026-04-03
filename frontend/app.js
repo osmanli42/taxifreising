@@ -1,4 +1,4 @@
-const API_URL = 'https://taxifreising.onrender.com/api';
+const API_URL = 'https://taxifreising.de/api';
 
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('anfrageForm');
