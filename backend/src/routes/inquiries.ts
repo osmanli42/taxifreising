@@ -67,7 +67,7 @@ function emailShell(content: string) {
           <p style="margin:0 0 4px;font-size:12px;color:${C.gray400};">Eisvogelweg 2, 85356 Freising</p>
           <p style="margin:0 0 4px;font-size:12px;color:${C.gray400};">
             <a href="tel:+4915141620000" style="color:${C.gray400};text-decoration:none;">+49 151 4162 0000</a> &bull;
-            <a href="mailto:info@taxifreising.de" style="color:${C.gray400};text-decoration:none;">info@taxifreising.de</a>
+            <a href="mailto:osman@taxifreising.de" style="color:${C.gray400};text-decoration:none;">osman@taxifreising.de</a>
           </p>
           <div style="margin:16px auto 0;width:80px;height:1px;background:${C.gray200};"></div>
           <p style="margin:12px 0 0;font-size:11px;color:${C.gray400};">24/7 Taxiservice &bull; Festpreise &bull; Professioneller Service</p>
@@ -82,10 +82,10 @@ function emailShell(content: string) {
 
 function headerBlock(icon: string, title: string, subtitle: string, bgColor: string = C.brand) {
   return `
-        <tr><td style="background:linear-gradient(135deg,${bgColor} 0%,${bgColor}dd 100%);padding:36px 32px 28px;text-align:center;">
-          <div style="font-size:36px;margin-bottom:12px;">${icon}</div>
-          <h1 style="margin:0 0 8px;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">${title}</h1>
-          ${subtitle ? `<p style="margin:0;font-size:14px;color:rgba(255,255,255,0.75);line-height:1.5;">${subtitle}</p>` : ''}
+        <tr><td style="background-color:${bgColor};background:linear-gradient(135deg,${bgColor} 0%,${bgColor} 100%);padding:20px 32px 16px;text-align:center;">
+          <div style="font-size:32px;margin-bottom:6px;">${icon}</div>
+          <h1 style="margin:0 0 5px;font-size:22px;font-weight:700;color:#ffffff;letter-spacing:-0.3px;">${title}</h1>
+          ${subtitle ? `<p style="margin:0;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.4;">${subtitle}</p>` : ''}
         </td></tr>`;
 }
 
@@ -159,19 +159,19 @@ router.post('/', async (req, res) => {
     await run(
       `INSERT INTO tf_inquiries (token, confirm_token, anrede, vorname, nachname, email, phone, abholort, zielort, flugnummer, abholdatum, abholzeit, fahrgaeste, fahrzeug, gepaeck, anmerkungen, kindersitz_baby, kindersitz_kinder, kindersitz_sitz)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [token, confirm_token, anrede, vorname, nachname, email, phone, abholort, zielort, flugnummer, abholdatum, abholzeit, fahrgaeste, fahrzeug, gepaeck, anmerkungen, kindersitz_baby || 0, kindersitz_kinder || 0, kindersitz_sitz || 0]
+      [token, confirm_token, anrede ?? null, vorname ?? null, nachname ?? null, email ?? null, phone ?? null, abholort ?? null, zielort ?? null, flugnummer ?? null, abholdatum ?? null, abholzeit ?? null, fahrgaeste ?? null, fahrzeug ?? null, gepaeck ?? null, anmerkungen ?? null, kindersitz_baby || 0, kindersitz_kinder || 0, kindersitz_sitz || 0]
     );
 
     const resend = getResend();
 
     await resend.emails.send({
-      from: 'Taxi Freising <info@taxifreising.de>',
+      from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: ADMIN_EMAIL,
       subject: `Neue Anfrage: ${vorname} ${nachname} | ${abholort} → ${zielort}`,
       html: emailShell(`
         ${brandBar()}
         ${headerBlock('📋', 'Neue Transferanfrage', `${vorname} ${nachname} wartet auf ein Angebot`, C.brand)}
-        <tr><td style="padding:32px;">
+        <tr><td style="padding:16px 28px 28px;">
 
           <div style="background:linear-gradient(135deg,${C.blueBg},#e0f2fe);border:1px solid ${C.blueBorder};border-radius:12px;padding:20px;margin-bottom:28px;">
             <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;">
@@ -213,13 +213,13 @@ router.post('/', async (req, res) => {
     });
 
     await resend.emails.send({
-      from: 'Taxi Freising <info@taxifreising.de>',
+      from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: email,
       subject: 'Ihre Anfrage ist eingegangen – Taxi Freising',
       html: emailShell(`
         ${brandBar()}
         ${headerBlock('✉️', 'Anfrage erhalten', 'Vielen Dank! Wir melden uns in Kürze mit einem Angebot.', C.brand)}
-        <tr><td style="padding:32px;">
+        <tr><td style="padding:16px 28px 28px;">
 
           <p style="font-size:15px;color:${C.gray700};line-height:1.7;margin:0 0 8px;">
             Sehr geehrte${anrede === 'Frau' ? '' : 'r'} ${anrede} ${nachname},
@@ -307,13 +307,13 @@ router.post('/quote/:token', async (req, res) => {
     const resend = getResend();
 
     await resend.emails.send({
-      from: 'Taxi Freising <info@taxifreising.de>',
+      from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: inq.email,
       subject: `Ihr Angebot: ${price} € – Taxi Freising`,
       html: emailShell(`
         ${brandBar()}
         ${headerBlock('🚖', 'Ihr persönliches Angebot', 'Wir haben einen Festpreis für Ihren Transfer berechnet', C.brand)}
-        <tr><td style="padding:32px;">
+        <tr><td style="padding:16px 28px 28px;">
 
           <p style="font-size:15px;color:${C.gray700};line-height:1.7;margin:0 0 8px;">
             Sehr geehrte${inq.anrede === 'Frau' ? '' : 'r'} ${inq.anrede} ${inq.nachname},
@@ -391,13 +391,13 @@ router.post('/confirm/:confirm_token', async (req, res) => {
     const resend = getResend();
 
     await resend.emails.send({
-      from: 'Taxi Freising <info@taxifreising.de>',
+      from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: ADMIN_EMAIL,
       subject: `Buchung bestätigt: ${inq.vorname} ${inq.nachname} – ${inq.quoted_price} €`,
       html: emailShell(`
         ${brandBar()}
         ${headerBlock('✅', 'Buchung bestätigt!', `${inq.vorname} ${inq.nachname} hat das Angebot angenommen`, '#047857')}
-        <tr><td style="padding:32px;">
+        <tr><td style="padding:16px 28px 28px;">
 
           <div style="background:${C.greenBg};border:2px solid ${C.greenBorder};border-radius:14px;padding:24px;text-align:center;margin-bottom:28px;">
             <div style="font-size:14px;color:${C.green};font-weight:600;margin-bottom:4px;">Bestätigter Preis</div>
@@ -430,13 +430,13 @@ router.post('/confirm/:confirm_token', async (req, res) => {
     });
 
     await resend.emails.send({
-      from: 'Taxi Freising <info@taxifreising.de>',
+      from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: inq.email,
       subject: `Buchungsbestätigung – Ihre Fahrt am ${inq.abholdatum}`,
       html: emailShell(`
         ${brandBar()}
         ${headerBlock('🎉', 'Buchung bestätigt!', 'Vielen Dank – Ihre Fahrt ist verbindlich reserviert', '#047857')}
-        <tr><td style="padding:32px;">
+        <tr><td style="padding:16px 28px 28px;">
 
           <p style="font-size:15px;color:${C.gray700};line-height:1.7;margin:0 0 8px;">
             Sehr geehrte${inq.anrede === 'Frau' ? '' : 'r'} ${inq.anrede} ${inq.nachname},

@@ -3,149 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leistungen - Taxi Freising</title>
+  <title>Leistungen – Taxi Freising</title>
   <meta name="description" content="Unsere Leistungen: Flughafentransfer, Kombi-Taxi, Grossraum-Taxi, Kurierfahrten, Lotsendienst, Starthilfe.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260418">
+  <style>
+    .page-hero { background: var(--black); padding: 120px 0 48px; text-align: center; }
+    .page-hero h1 { font-size: clamp(28px,4vw,44px); font-weight: 800; color: var(--white); }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 16px; margin-top: 10px; }
+    .content-section { padding: 60px 0 80px; background: var(--gray); }
+    .leistung-card {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: stretch;
+    }
+    .leistung-icon {
+      background: var(--black);
+      color: var(--yellow);
+      padding: 32px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      min-width: 100px;
+      flex-shrink: 0;
+    }
+    .leistung-body { padding: 32px 36px; }
+    .leistung-body h2 { font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 12px; }
+    .leistung-body p { color: #555; line-height: 1.8; font-size: 15px; }
+    .leistung-body p + p { margin-top: 10px; }
+    .leistung-body a { color: var(--yellow); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 14px; }
+    .leistung-body a:hover { text-decoration: underline; }
+    @media (max-width: 600px) {
+      .leistung-card { flex-direction: column; }
+      .leistung-icon { min-width: unset; padding: 24px; }
+    }
+  </style>
+  <script src="cookie.js?v=20260418"></script>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo-icon">🚖</div>
+      <div class="logo-text">
+        <span class="logo-name">Taxi</span>
+        <span class="logo-sub">Freising</span>
+      </div>
     </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+        <li><a href="index.html#vorteile">Vorteile</a></li>
+        <li><a href="leistungen.html" class="active">Leistungen</a></li>
+        <li><a href="preise.html">Tarife</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <div class="header-divider"></div>
+      <a href="anfrage.html" class="btn-book-header">
+        <span>🚖</span> Jetzt buchen
+      </a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
-    <span></span><span></span><span></span>
-  </button>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leistungen.html" class="active">Leistungen</a></li>
-      <li><a href="preise.html">Tarife</a></li>
-      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-    </ul>
-  </nav>
 </header>
 
-<section style="background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%); color:#fff; padding: 48px 32px; text-align:center;">
-  <h1 style="font-size:36px;margin-bottom:12px;">Leistungen</h1>
-  <p style="opacity:0.85;">Alles was wir für Sie tun können</p>
-</section>
+<div class="page-hero">
+  <div class="section-label">LEISTUNGEN</div>
+  <h1>Was wir für Sie <span class="accent">tun</span></h1>
+  <p>Alles aus einer Hand – zuverlässig, pünktlich, komfortabel.</p>
+</div>
 
-<section style="padding: 64px 32px; background: var(--surface);">
-  <div class="container" style="max-width: 860px;">
+<section class="content-section">
+  <div class="container" style="max-width: 880px;">
 
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);overflow:hidden;margin-bottom:24px;">
-      <div style="display:flex;align-items:stretch;">
-        <div style="background:var(--brand);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:center;font-size:36px;min-width:90px;">✈️</div>
-        <div style="padding:28px 32px;">
-          <h2 style="color:var(--accent);font-size:22px;margin-bottom:12px;">Flughafentransfer</h2>
-          <p style="color:var(--text-secondary);line-height:1.8;">
-            Beginnen Sie Ihren Urlaub erholsam, wir helfen Ihnen dabei.<br>
-            Keine lästige Parkplatzsuche, kein schweres Kofferschleppen, kein Umsteigen, wir holen Sie von Zuhause ab und bringen Sie mit einem Taxi Ihrer Wahl bequem zum Flughafen.
-          </p>
-          <p style="color:var(--text-secondary);line-height:1.8;margin-top:12px;">
-            Gepäckservice und Kindersitze sind bei uns selbstverständlich.
-          </p>
-          <a href="flughafentransfer.html" style="display:inline-block;margin-top:16px;color:var(--accent);font-weight:600;">Mehr über Flughafentransfer →</a>
-        </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">✈️</div>
+      <div class="leistung-body">
+        <h2>Flughafentransfer</h2>
+        <p>Beginnen Sie Ihren Urlaub erholsam – wir helfen Ihnen dabei. Keine lästige Parkplatzsuche, kein schweres Kofferschleppen, kein Umsteigen. Wir holen Sie von Zuhause ab und bringen Sie bequem zum Flughafen.</p>
+        <p>Gepäckservice und Kindersitze sind bei uns selbstverständlich.</p>
+        <a href="flughafentransfer.html">Mehr über Flughafentransfer →</a>
       </div>
     </div>
 
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);overflow:hidden;margin-bottom:24px;">
-      <div style="display:flex;align-items:stretch;">
-        <div style="background:var(--brand);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:center;font-size:36px;min-width:90px;">🚗</div>
-        <div style="padding:28px 32px;">
-          <h2 style="color:var(--accent);font-size:22px;margin-bottom:12px;">Kombi Fahrzeug</h2>
-          <p style="color:var(--text-secondary);line-height:1.8;">
-            Haben Sie viel Gepäck, ein kleiner Umzug, große Kisten oder nur zuviel eingekauft, dann ist das Kombi-Taxi genau das richtige Fahrzeug für Sie.
-          </p>
-          <p style="color:var(--text-secondary);line-height:1.8;margin-top:12px;">
-            Geben Sie bei Ihrer Bestellung Ihr Wunschfahrzeug an und wir führen umgehend Ihren Auftrag aus.
-          </p>
-        </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">🚗</div>
+      <div class="leistung-body">
+        <h2>Kombi Fahrzeug</h2>
+        <p>Haben Sie viel Gepäck, einen kleinen Umzug, große Kisten oder nur zu viel eingekauft? Dann ist das Kombi-Taxi genau das richtige Fahrzeug für Sie.</p>
+        <p>Geben Sie bei Ihrer Bestellung Ihren Fahrzeugwunsch an und wir führen umgehend Ihren Auftrag aus.</p>
       </div>
     </div>
 
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);overflow:hidden;margin-bottom:24px;">
-      <div style="display:flex;align-items:stretch;">
-        <div style="background:var(--brand);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:center;font-size:36px;min-width:90px;">🚐</div>
-        <div style="padding:28px 32px;">
-          <h2 style="color:var(--accent);font-size:22px;margin-bottom:12px;">Grossraum-Taxi</h2>
-          <p style="color:var(--text-secondary);line-height:1.8;">
-            Das Großraum-Taxi bietet Platz für kleine Gruppen oder große Familien.<br>
-            Bis zu 8 Fahrgäste können vom Großraum-Taxi befördert werden.
-          </p>
-          <p style="color:var(--text-secondary);line-height:1.8;margin-top:12px;">
-            Rufen Sie frühzeitig Taxi <strong>0151 4162 0000</strong> an und geben Sie Ihre Bestellung auf, ansonsten könnte es zu längeren Wartezeiten kommen.
-          </p>
-        </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">🚐</div>
+      <div class="leistung-body">
+        <h2>Grossraum-Taxi</h2>
+        <p>Das Großraum-Taxi bietet Platz für kleine Gruppen oder große Familien. Bis zu 8 Fahrgäste können befördert werden.</p>
+        <p>Rufen Sie frühzeitig unter <strong>0151 4162 0000</strong> an und geben Sie Ihre Bestellung auf, ansonsten könnte es zu längeren Wartezeiten kommen.</p>
       </div>
     </div>
 
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);overflow:hidden;margin-bottom:24px;">
-      <div style="display:flex;align-items:stretch;">
-        <div style="background:var(--brand);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:center;font-size:36px;min-width:90px;">📦</div>
-        <div style="padding:28px 32px;">
-          <h2 style="color:var(--accent);font-size:22px;margin-bottom:12px;">Kurierfahrten</h2>
-          <p style="color:var(--text-secondary);line-height:1.8;">
-            Ersatzteile für Fahrzeuge, Werkstücke aus Ihrer Firma, Medikamente, Dokumente und sonstige Waren, die von Größe und Gewicht mit einem PKW transportiert werden können und dringend woanders benötigt werden, fahren wir rund um die Uhr, auch auf direkten Anruf, egal wie weit.
-          </p>
-        </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">📦</div>
+      <div class="leistung-body">
+        <h2>Kurierfahrten</h2>
+        <p>Ersatzteile, Werkstücke, Medikamente, Dokumente und sonstige Waren – wir fahren rund um die Uhr, auch auf direkten Anruf, egal wie weit.</p>
       </div>
     </div>
 
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);overflow:hidden;margin-bottom:24px;">
-      <div style="display:flex;align-items:stretch;">
-        <div style="background:var(--brand);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:center;font-size:36px;min-width:90px;">🗺️</div>
-        <div style="padding:28px 32px;">
-          <h2 style="color:var(--accent);font-size:22px;margin-bottom:12px;">Lotsendienst</h2>
-          <p style="color:var(--text-secondary);line-height:1.8;">
-            Sie haben einen dringenden Termin, finden aber ihre Zieladresse nicht.<br>
-            Kein Problem, rufen Sie Taxi <strong>0151 4162 0000</strong> an, vereinbaren Sie einen Treffpunkt oder fahren Sie zum nächsten Taxihalteplatz. Wir lotsen Sie gerne durch die Stadt.
-          </p>
-        </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">🗺️</div>
+      <div class="leistung-body">
+        <h2>Lotsendienst</h2>
+        <p>Sie haben einen dringenden Termin, finden aber Ihre Zieladresse nicht? Kein Problem – rufen Sie unter <strong>0151 4162 0000</strong> an. Wir lotsen Sie gerne durch die Stadt.</p>
       </div>
     </div>
 
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);overflow:hidden;margin-bottom:48px;">
-      <div style="display:flex;align-items:stretch;">
-        <div style="background:var(--brand);color:#fff;padding:24px 28px;display:flex;align-items:center;justify-content:center;font-size:36px;min-width:90px;">🔋</div>
-        <div style="padding:28px 32px;">
-          <h2 style="color:var(--accent);font-size:22px;margin-bottom:12px;">Starthilfe</h2>
-          <p style="color:var(--text-secondary);line-height:1.8;">
-            Springt Ihr Fahrzeug nicht an, geben wir Ihnen gerne Starthilfe.<br>
-            Ein kundiger Kollege kommt mit einem Startkabel und in wenigen Minuten ist Ihr Auto wieder fahrbereit.
-          </p>
-        </div>
+    <div class="leistung-card">
+      <div class="leistung-icon">🔋</div>
+      <div class="leistung-body">
+        <h2>Starthilfe</h2>
+        <p>Springt Ihr Fahrzeug nicht an? Ein kundiger Kollege kommt mit einem Startkabel – in wenigen Minuten ist Ihr Auto wieder fahrbereit.</p>
       </div>
     </div>
 
-    <div style="text-align:center;">
-      <a href="anfrage.html" class="btn-primary" style="padding:16px 48px;">Jetzt buchen</a>
+    <div style="text-align: center; margin-top: 16px;">
+      <a href="anfrage.html" class="btn-yellow">Jetzt anfragen →</a>
     </div>
 
   </div>
 </section>
 
-<footer>
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div>
-        <h4>Taxi Freising</h4>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>🚖</span>
+          <div><strong>Taxi</strong> Freising</div>
+        </div>
         <p>N &amp; N Taxi GbR<br>Eisvogelweg 2<br>85356 Freising</p>
+        <div class="footer-contact">
+          <a href="tel:+4915141620000">📞 0151 4162 0000</a>
+          <a href="mailto:osman@taxifreising.de">✉️ osman@taxifreising.de</a>
+        </div>
       </div>
-      <div>
-        <h4>Kontakt</h4>
-        <p>
-          <a href="tel:+4915141620000">0151 4162 0000</a><br>
-          <a href="mailto:taxi@taxifreising.de">taxi@taxifreising.de</a>
-        </p>
-      </div>
-      <div>
+      <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -153,21 +167,32 @@
           <li><a href="preise.html">Tarife</a></li>
           <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="impressum.html">Impressum</a></li>
         </ul>
       </div>
-      <div>
-        <h4>Online Buchen</h4>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
         <ul>
-          <li><a href="anfrage.html">Anfrage senden</a></li>
-          <li><a href="mailto:taxi@taxifreising.de">Per E-Mail buchen</a></li>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+          <li><a href="leistungen.html">Kombi-Fahrzeug</a></li>
+          <li><a href="leistungen.html">Grossraum-Taxi</a></li>
+          <li><a href="leistungen.html">Kurierfahrten</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="agb.html">AGB</a></li>
         </ul>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
+    <div class="footer-bottom">
       <p>&copy; 2026 Taxi Freising – N &amp; N Taxi GbR. Alle Rechte vorbehalten.</p>
     </div>
   </div>
 </footer>
+
+<script src="app.js"></script>
 </body>
 </html>

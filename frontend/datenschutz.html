@@ -3,132 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Datenschutz - Taxi Freising</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Datenschutz – Taxi Freising</title>
+  <link rel="stylesheet" href="styles.css?v=20260418">
+  <style>
+    .page-hero { background: var(--black); padding: 120px 0 48px; text-align: center; }
+    .page-hero h1 { font-size: clamp(28px,4vw,44px); font-weight: 800; color: var(--white); }
+    .content-section { padding: 60px 0 80px; background: var(--gray); }
+    .card { background: var(--white); border-radius: 20px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); padding: 48px; max-width: 800px; margin: 0 auto; }
+    .legal-section { margin-bottom: 28px; }
+    .legal-section h3 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1.5px solid #f0f0f0; }
+    .legal-section p { font-size: 14px; color: #555; line-height: 1.9; }
+    .legal-section p + p { margin-top: 12px; }
+    .legal-section ul { margin: 12px 0 0 20px; color: #555; font-size: 14px; line-height: 2; }
+    .legal-section a { color: var(--yellow); text-decoration: none; font-weight: 600; }
+  </style>
+  <script src="cookie.js?v=20260418"></script>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo-icon">🚖</div>
+      <div class="logo-text">
+        <span class="logo-name">Taxi</span>
+        <span class="logo-sub">Freising</span>
+      </div>
     </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+        <li><a href="index.html#vorteile">Vorteile</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="preise.html">Tarife</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <div class="header-divider"></div>
+      <a href="anfrage.html" class="btn-book-header">
+        <span>🚖</span> Jetzt buchen
+      </a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
-    <span></span><span></span><span></span>
-  </button>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leistungen.html">Leistungen</a></li>
-      <li><a href="preise.html">Tarife</a></li>
-      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-    </ul>
-  </nav>
 </header>
 
-<section style="padding: 80px 32px; background: var(--surface);">
-  <div class="container" style="max-width: 800px;">
-    <h1 style="margin-bottom: 48px;">Datenschutzerklärung</h1>
+<div class="page-hero">
+  <div class="section-label">RECHTLICHES</div>
+  <h1>Datenschutzerklärung</h1>
+</div>
 
-    <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); line-height: 1.8; color: var(--text-secondary);">
-      <h3 style="color: var(--text); margin-top: 32px; margin-bottom: 16px;">1. Datenschutz auf einen Blick</h3>
+<section class="content-section">
+  <div class="container">
+    <div class="card">
 
-      <p>
-        <strong>Allgemeine Hinweise:</strong> Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.
-      </p>
+      <div class="legal-section">
+        <h3>1. Datenschutz auf einen Blick</h3>
+        <p><strong>Allgemeine Hinweise:</strong> Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+      </div>
 
-      <h3 style="color: var(--text); margin-top: 32px; margin-bottom: 16px;">2. Allgemeine Hinweise</h3>
+      <div class="legal-section">
+        <h3>2. Allgemeine Hinweise</h3>
+        <p>Die Betreiber dieser Seite nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
+      </div>
 
-      <p>
-        Die Betreiber dieser Seite nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
-      </p>
+      <div class="legal-section">
+        <h3>3. Erfassung von Daten auf unserer Website</h3>
+        <p><strong>Automatische Datenerfassung:</strong> Wenn Sie unsere Website besuchen, werden automatisch Informationen erfasst, die Ihr Browser automatisch an unsere Server übermittelt, wie z.B. der Browsertyp und die Besuchszeit.</p>
+        <p><strong>Daten aus Formularen:</strong> Wenn Sie eines unserer Online-Buchungsformulare ausfüllen, werden Ihre Angaben erfasst und zur Verarbeitung Ihrer Anfrage verwendet. Diese Daten werden mit Ihrer ausdrücklichen Zustimmung verarbeitet.</p>
+      </div>
 
-      <h3 style="color: var(--text); margin-top: 32px; margin-bottom: 16px;">3. Erfassung von Daten auf unserer Website</h3>
+      <div class="legal-section">
+        <h3>4. Rechtsgrundlagen</h3>
+        <p>Die Verarbeitung Ihrer Daten basiert auf:</p>
+        <ul>
+          <li>Artikel 6 (1) DSGVO – Ihre ausdrückliche Zustimmung</li>
+          <li>Artikel 6 (1) b DSGVO – Verarbeitung zur Erfüllung eines Vertrags</li>
+          <li>Artikel 6 (1) f DSGVO – Berechtigte Interessen</li>
+        </ul>
+      </div>
 
-      <p>
-        <strong>Automatische Datenerfassung:</strong> Wenn Sie unsere Website besuchen, werden automatisch Informationen erfasst, die Ihr Browser automatisch an unsere Server übermittelt, wie z.B. der Browsertyp und die Besuchszeit.
-      </p>
+      <div class="legal-section">
+        <h3>5. Ihre Rechte</h3>
+        <p>Sie haben das Recht:</p>
+        <ul>
+          <li>Auskunft über Ihre gespeicherten Daten zu erhalten</li>
+          <li>Berichtigung unrichtiger Daten zu verlangen</li>
+          <li>Löschung Ihrer Daten zu fordern</li>
+          <li>Die Verarbeitung Ihrer Daten einzuschränken</li>
+          <li>Widerspruch gegen die Verarbeitung einzulegen</li>
+          <li>Datenübertragbarkeit zu fordern</li>
+        </ul>
+        <p style="margin-top: 16px;">Um diese Rechte geltend zu machen, kontaktieren Sie uns unter <a href="mailto:osman@taxifreising.de">osman@taxifreising.de</a></p>
+      </div>
 
-      <p style="margin-top: 16px;">
-        <strong>Daten aus Formularen:</strong> Wenn Sie eines unserer Online-Buchungsformulare ausfüllen, werden Ihre Angaben erfasst und zur Verarbeitung Ihrer Anfrage verwendet. Diese Daten werden mit Ihrer ausdrücklichen Zustimmung verarbeitet.
-      </p>
+      <div class="legal-section">
+        <h3>6. Sicherheit Ihrer Daten</h3>
+        <p>Wir verwenden branchenübliche Sicherheitsmaßnahmen, um Ihre Daten vor unbefugtem Zugriff, Änderung oder Weitergabe zu schützen. Alle Daten werden verschlüsselt übertragen.</p>
+      </div>
 
-      <h3 style="color: var(--text); margin-top: 32px; margin-bottom: 16px;">4. Rechtsgrundlagen</h3>
+      <div class="legal-section">
+        <h3>7. Cookies und Tracking-Technologien</h3>
+        <p>Unsere Website verwendet Cookies und ähnliche Technologien gemäß <strong>§ 25 TTDSG</strong> und <strong>Art. 6 Abs. 1 lit. a DSGVO</strong>.</p>
 
-      <p>
-        Die Verarbeitung Ihrer Daten basiert auf:
-      </p>
-      <ul style="margin-top: 12px; margin-left: 20px;">
-        <li>Artikel 6 (1) DSGVO – Ihre ausdrückliche Zustimmung</li>
-        <li>Artikel 6 (1) b DSGVO – Verarbeitung zur Erfüllung eines Vertrags</li>
-        <li>Artikel 6 (1) f DSGVO – Berechtigte Interessen</li>
-      </ul>
+        <p style="margin-top:12px;"><strong>Technisch notwendige Cookies:</strong></p>
+        <ul>
+          <li><strong>tf_consent</strong> – Speichert Ihre Cookie-Einwilligung (localStorage, kein Ablaufdatum, technisch notwendig)</li>
+        </ul>
 
-      <h3 style="color: var(--text); margin-top: 32px; margin-bottom: 16px;">5. Ihre Rechte</h3>
+        <p style="margin-top:12px;"><strong>Externe Dienste (nur mit Ihrer Einwilligung):</strong></p>
+        <ul>
+          <li>
+            <strong>Google Fonts</strong> (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland) –
+            Lädt Schriftarten von Google-Servern. Dabei wird Ihre IP-Adresse an Google übertragen.
+            Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO.
+            Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
+          </li>
+          <li style="margin-top:8px;">
+            <strong>Google Maps / Places API</strong> (Google Ireland Ltd.) –
+            Wird auf der Anfrageseite für die Adressvervollständigung verwendet. Dabei kann Ihre IP-Adresse und Sucheingabe an Google übertragen werden.
+            Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO.
+            Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
+          </li>
+        </ul>
 
-      <p>
-        Sie haben das Recht:
-      </p>
-      <ul style="margin-top: 12px; margin-left: 20px;">
-        <li>Auskunft über Ihre gespeicherten Daten zu erhalten</li>
-        <li>Berichtigung unrichtiger Daten zu verlangen</li>
-        <li>Löschung Ihrer Daten zu fordern</li>
-        <li>Die Verarbeitung Ihrer Daten einzuschränken</li>
-        <li>Widerspruch gegen die Verarbeitung einzulegen</li>
-        <li>Datenübertragbarkeit zu fordern</li>
-      </ul>
+        <p style="margin-top:12px;"><strong>Einwilligung widerrufen:</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie in Ihrem Browser den localStorage-Eintrag <em>tf_consent</em> löschen (Browsereinstellungen → Websitedaten löschen) oder auf folgenden Link klicken:</p>
+        <p style="margin-top:8px;">
+          <a href="#" onclick="try{localStorage.removeItem('tf_consent');}catch(e){}location.reload();return false;" style="color:var(--yellow);font-weight:600;">
+            🔄 Cookie-Einstellungen zurücksetzen
+          </a>
+        </p>
+      </div>
 
-      <p style="margin-top: 16px;">
-        Um diese Rechte geltend zu machen, kontaktieren Sie uns unter <a href="mailto:info@taxifreising.de" style="color: var(--accent);">info@taxifreising.de</a>
-      </p>
+      <div class="legal-section" style="margin-bottom: 0;">
+        <h3>8. Kontakt zum Datenschutzbeauftragten</h3>
+        <p>
+          Bei Fragen zum Datenschutz kontaktieren Sie uns bitte unter:<br><br>
+          <strong>N &amp; N Taxi GbR</strong><br>
+          Eisvogelweg 2<br>
+          85356 Freising<br>
+          E-Mail: <a href="mailto:osman@taxifreising.de">osman@taxifreising.de</a><br>
+          Telefon: <a href="tel:+4915141620000">0151 4162 0000</a>
+        </p>
+      </div>
 
-      <h3 style="color: var(--text); margin-top: 32px; margin-bottom: 16px;">6. Sicherheit Ihrer Daten</h3>
-
-      <p>
-        Wir verwenden branchenübliche Sicherheitsmaßnahmen, um Ihre Daten vor unbefugtem Zugriff, Änderung oder Weitergabe zu schützen. Alle Daten werden verschlüsselt übertragen.
-      </p>
-
-      <h3 style="color: var(--text); margin-top: 32px; margin-bottom: 16px;">7. Kontakt zum Datenschutzbeauftragten</h3>
-
-      <p>
-        Bei Fragen zum Datenschutz kontaktieren Sie uns bitte unter:<br><br>
-        <strong>Taxi N&N GbR</strong><br>
-        Eisvogelweg 2<br>
-        85356 Freising<br>
-        E-Mail: <a href="mailto:info@taxifreising.de" style="color: var(--accent);">info@taxifreising.de</a><br>
-        Telefon: <a href="tel:+4915141620000" style="color: var(--accent);">+49 151 4162 0000</a>
-      </p>
     </div>
   </div>
 </section>
 
-<footer>
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div>
-        <h4>Taxi Freising</h4>
-        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>🚖</span>
+          <div><strong>Taxi</strong> Freising</div>
+        </div>
+        <p>N &amp; N Taxi GbR<br>Eisvogelweg 2<br>85356 Freising</p>
+        <div class="footer-contact">
+          <a href="tel:+4915141620000">📞 0151 4162 0000</a>
+          <a href="mailto:osman@taxifreising.de">✉️ osman@taxifreising.de</a>
+        </div>
       </div>
-      <div>
-        <h4>Kontakt</h4>
-        <p>
-          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
-          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
-        </p>
-      </div>
-      <div>
+      <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="preise.html">Preise</a></li>
-          <li><a href="anfrage.html">Buchen</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="preise.html">Tarife</a></li>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </div>
-      <div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+          <li><a href="leistungen.html">Kombi-Fahrzeug</a></li>
+          <li><a href="leistungen.html">Grossraum-Taxi</a></li>
+          <li><a href="leistungen.html">Kurierfahrten</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <h4>Rechtliches</h4>
         <ul>
           <li><a href="impressum.html">Impressum</a></li>
@@ -137,10 +197,12 @@
         </ul>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
-      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Taxi Freising – N &amp; N Taxi GbR. Alle Rechte vorbehalten.</p>
     </div>
   </div>
 </footer>
+
+<script src="app.js"></script>
 </body>
 </html>

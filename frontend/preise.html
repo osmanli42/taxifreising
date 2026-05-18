@@ -3,144 +3,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tarife - Taxi Freising</title>
+  <title>Tarife – Taxi Freising</title>
   <meta name="description" content="Taxitarife Freising – Grundpreise und Festpreise. Mindestfahrpreis 5,70€, Kilometerpreis 2,50€.">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260418">
+  <style>
+    .page-hero { background: var(--black); padding: 120px 0 48px; text-align: center; }
+    .page-hero h1 { font-size: clamp(28px,4vw,44px); font-weight: 800; color: var(--white); }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 16px; margin-top: 10px; }
+    .content-section { padding: 60px 0 80px; background: var(--gray); }
+    .card { background: var(--white); border-radius: 20px; box-shadow: 0 8px 40px rgba(0,0,0,0.08); padding: 40px; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .price-table { width: 100%; border-collapse: collapse; }
+    .price-table tr { border-bottom: 1.5px solid #f0f0f0; }
+    .price-table tr:last-child { border-bottom: none; }
+    .price-table td { padding: 16px 0; font-size: 15px; color: var(--text); }
+    .price-table td:last-child { text-align: right; font-weight: 800; font-size: 20px; color: var(--yellow); }
+    .price-table .sub-row td { padding: 0 0 14px; font-size: 12px; color: #999; }
+    .table-title { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--yellow); margin: 32px 0 20px; }
+    .table-title:first-child { margin-top: 0; }
+    .include-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; margin-top: 8px; }
+    .include-item { display: flex; align-items: center; gap: 12px; background: #f0fdf4; border-radius: 12px; padding: 14px 16px; }
+    .include-check { width: 28px; height: 28px; background: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+    .include-item span { font-size: 14px; color: #15803d; font-weight: 600; }
+    .fern-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .fern-table thead tr { background: var(--black); color: var(--white); }
+    .fern-table thead td { padding: 12px 16px; font-weight: 700; font-size: 13px; }
+    .fern-table tbody tr:nth-child(even) { background: #fafafa; }
+    .fern-table tbody td { padding: 10px 16px; border-bottom: 1px solid #f0f0f0; color: #444; }
+    .fern-table tbody td:last-child { text-align: right; font-weight: 700; color: var(--yellow); }
+    .note-box { background: #fafafa; border-radius: 12px; padding: 16px 20px; margin-top: 20px; font-size: 13px; color: #777; line-height: 1.7; }
+  </style>
+  <script src="cookie.js?v=20260418"></script>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo-icon">🚖</div>
+      <div class="logo-text">
+        <span class="logo-name">Taxi</span>
+        <span class="logo-sub">Freising</span>
+      </div>
     </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+        <li><a href="index.html#vorteile">Vorteile</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="preise.html" class="active">Tarife</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <div class="header-divider"></div>
+      <a href="anfrage.html" class="btn-book-header">
+        <span>🚖</span> Jetzt buchen
+      </a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
-    <span></span><span></span><span></span>
-  </button>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leistungen.html">Leistungen</a></li>
-      <li><a href="preise.html" class="active">Tarife</a></li>
-      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-    </ul>
-  </nav>
 </header>
 
-<section style="background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%); color:#fff; padding: 48px 32px; text-align:center;">
-  <h1 style="font-size:36px;margin-bottom:12px;">Tarife</h1>
-  <p style="opacity:0.85;">Transparente Preise ohne versteckte Kosten</p>
-</section>
+<div class="page-hero">
+  <div class="section-label">TARIFE</div>
+  <h1>Transparente <span class="accent">Preise</span></h1>
+  <p>Keine versteckten Kosten – faire Festpreise für alle Strecken.</p>
+</div>
 
-<section style="padding: 64px 32px; background: var(--surface);">
-  <div class="container" style="max-width: 800px;">
+<section class="content-section">
+  <div class="container">
 
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);padding:40px;margin-bottom:32px;">
-      <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:24px;">
-        Wir befördern Sie im Pflichtfahrgebiet der Landkreise Freising, Erding und Landeshauptstadt München – ausschliesslich zu den geltenden Taxitarifen!
+    <div class="card">
+      <p style="color: #666; line-height: 1.9; margin-bottom: 28px;">
+        Wir befördern Sie im Pflichtfahrgebiet der Landkreise Freising, Erding und Landeshauptstadt München – ausschließlich zu den geltenden Taxitarifen!
       </p>
 
-      <h2 style="color:var(--brand);font-size:20px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);">Grundpreise</h2>
-
-      <table style="width:100%;border-collapse:collapse;margin-bottom:40px;">
-        <tr style="border-bottom:1px solid var(--border);">
-          <td style="padding:14px 0;color:var(--text-secondary);">Mindestfahrpreis</td>
-          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">5,70 €</td>
+      <div class="table-title">Grundpreise</div>
+      <table class="price-table">
+        <tr>
+          <td>Mindestfahrpreis</td>
+          <td>5,70 €</td>
+        </tr>
+        <tr class="sub-row">
+          <td colspan="2">Mit Beginn der Fahrt wird die Grundgebühr fällig</td>
         </tr>
         <tr>
-          <td style="padding:4px 0 12px;font-size:13px;color:var(--text-muted);" colspan="2">Mit Beginn der Fahrt wird die Grundgebühr fällig</td>
+          <td>Kilometerpreis</td>
+          <td>2,50 €</td>
         </tr>
-        <tr style="border-bottom:1px solid var(--border);">
-          <td style="padding:14px 0;color:var(--text-secondary);">Kilometerpreis</td>
-          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">2,50 €</td>
-        </tr>
-        <tr>
-          <td style="padding:4px 0 12px;font-size:13px;color:var(--text-muted);" colspan="2">Pro gefahrenen Kilometer bezahlen Sie bei uns</td>
-        </tr>
-        <tr style="border-bottom:1px solid var(--border);">
-          <td style="padding:14px 0;color:var(--text-secondary);">Wartezeit pro Stunde</td>
-          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">38,00 €</td>
+        <tr class="sub-row">
+          <td colspan="2">Pro gefahrenen Kilometer</td>
         </tr>
         <tr>
-          <td style="padding:4px 0 12px;font-size:13px;color:var(--text-muted);" colspan="2">Auch verkehrsbedingt</td>
+          <td>Wartezeit pro Stunde</td>
+          <td>38,00 €</td>
         </tr>
-        <tr style="border-bottom:1px solid var(--border);">
-          <td style="padding:14px 0;color:var(--text-secondary);">Zuschlag ab dem fünften Fahrgast</td>
-          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">10,00 €</td>
+        <tr class="sub-row">
+          <td colspan="2">Auch verkehrsbedingt</td>
         </tr>
         <tr>
-          <td style="padding:14px 0;color:var(--text-secondary);">Zuschlag für die Fahrradmitnahme</td>
-          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:18px;color:var(--brand);">7,50 €</td>
+          <td>Zuschlag ab dem fünften Fahrgast</td>
+          <td>10,00 €</td>
+        </tr>
+        <tr>
+          <td>Zuschlag für die Fahrradmitnahme</td>
+          <td>7,50 €</td>
         </tr>
       </table>
 
-      <h2 style="color:var(--brand);font-size:20px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border);">Festpreise</h2>
-
-      <table style="width:100%;border-collapse:collapse;margin-bottom:32px;">
-        <tr style="border-bottom:1px solid var(--border);">
-          <td style="padding:14px 0;">
-            <div style="font-weight:600;color:var(--text);margin-bottom:4px;">Flughafen – Messe</div>
-            <div style="font-size:13px;color:var(--text-muted);">Beide Richtungen auf kürzestem Weg</div>
+      <div class="table-title">Festpreise</div>
+      <table class="price-table">
+        <tr>
+          <td>
+            <div style="font-weight: 700;">Flughafen – Messe</div>
+            <div style="font-size: 12px; color: #999; margin-top: 3px;">Beide Richtungen auf kürzestem Weg</div>
           </td>
-          <td style="padding:14px 0;text-align:right;font-weight:700;font-size:22px;color:var(--brand);">90,00 €</td>
+          <td>90,00 €</td>
         </tr>
       </table>
 
-      <div style="background:var(--surface);border-radius:8px;padding:20px 24px;">
-        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">
-          Für weitere Strecken und individuelle Angebote kontaktieren Sie uns bitte direkt. Wir erstellen Ihnen gerne ein maßgeschneidertes Angebot.
-        </p>
+      <div class="note-box">
+        Für weitere Strecken und individuelle Angebote kontaktieren Sie uns bitte direkt. Wir erstellen Ihnen gerne ein maßgeschneidertes Angebot.
       </div>
     </div>
 
-    <!-- Inklusivleistungen -->
-    <div style="background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);padding:40px;margin-bottom:32px;">
-      <h2 style="color:var(--brand);font-size:20px;margin-bottom:20px;">Was ist inklusive?</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
-          <span style="color:var(--green);font-size:20px;">✓</span>
-          <span style="font-size:14px;color:var(--text-secondary);">Kindersitze kostenlos</span>
+    <div class="card">
+      <div class="table-title" style="margin-top: 0;">Was ist inklusive?</div>
+      <div class="include-grid">
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span>Kindersitze kostenlos</span>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
-          <span style="color:var(--green);font-size:20px;">✓</span>
-          <span style="font-size:14px;color:var(--text-secondary);">Gepäckservice</span>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span>Gepäckservice</span>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
-          <span style="color:var(--green);font-size:20px;">✓</span>
-          <span style="font-size:14px;color:var(--text-secondary);">60 Min. Wartezeit (Flughafen)</span>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span>60 Min. Wartezeit (Flughafen)</span>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--green-light);border-radius:8px;">
-          <span style="color:var(--green);font-size:20px;">✓</span>
-          <span style="font-size:14px;color:var(--text-secondary);">Namensschild bei Abholung</span>
+        <div class="include-item">
+          <div class="include-check">✓</div>
+          <span>Namensschild bei Abholung</span>
         </div>
       </div>
     </div>
 
-    <div style="text-align:center;">
-      <a href="anfrage.html" class="btn-primary" style="padding:16px 48px;">Jetzt Angebot anfordern</a>
+    <div style="text-align: center; margin-top: 8px;">
+      <a href="anfrage.html" class="btn-yellow">Jetzt Angebot anfordern →</a>
     </div>
 
   </div>
 </section>
 
-<footer>
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div>
-        <h4>Taxi Freising</h4>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>🚖</span>
+          <div><strong>Taxi</strong> Freising</div>
+        </div>
         <p>N &amp; N Taxi GbR<br>Eisvogelweg 2<br>85356 Freising</p>
+        <div class="footer-contact">
+          <a href="tel:+4915141620000">📞 0151 4162 0000</a>
+          <a href="mailto:osman@taxifreising.de">✉️ osman@taxifreising.de</a>
+        </div>
       </div>
-      <div>
-        <h4>Kontakt</h4>
-        <p>
-          <a href="tel:+4915141620000">0151 4162 0000</a><br>
-          <a href="mailto:taxi@taxifreising.de">taxi@taxifreising.de</a>
-        </p>
-      </div>
-      <div>
+      <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -148,21 +181,32 @@
           <li><a href="preise.html">Tarife</a></li>
           <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
-          <li><a href="impressum.html">Impressum</a></li>
         </ul>
       </div>
-      <div>
-        <h4>Online Buchen</h4>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
         <ul>
-          <li><a href="anfrage.html">Anfrage senden</a></li>
-          <li><a href="mailto:taxi@taxifreising.de">Per E-Mail buchen</a></li>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+          <li><a href="leistungen.html">Kombi-Fahrzeug</a></li>
+          <li><a href="leistungen.html">Grossraum-Taxi</a></li>
+          <li><a href="leistungen.html">Kurierfahrten</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="agb.html">AGB</a></li>
         </ul>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
+    <div class="footer-bottom">
       <p>&copy; 2026 Taxi Freising – N &amp; N Taxi GbR. Alle Rechte vorbehalten.</p>
     </div>
   </div>
 </footer>
+
+<script src="app.js"></script>
 </body>
 </html>

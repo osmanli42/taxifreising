@@ -1,180 +1,478 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Buchen - Taxi Freising</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fahrt anfragen – Taxi Freising</title>
+<meta name="description" content="Taxi Freising – Fahrt anfragen. Festpreise, 24/7 erreichbar. Tel: 0151 4162 0000">
+<link rel="stylesheet" href="styles.css?v=20260418">
+<style>
+body { padding-bottom: 90px; }
+.page-hero { background: var(--black); padding: 100px 0 36px; text-align: center; }
+.page-hero h1 { font-size: clamp(24px,4vw,38px); font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.page-hero p { font-size: 14px; color: rgba(255,255,255,0.55); }
+
+.trust-strip { background: #111; border-bottom: 1px solid rgba(229,167,22,.15); padding: 12px 24px; }
+.trust-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+.trust-item { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: #888; }
+.trust-item .ti { color: var(--yellow); }
+
+.anfrage-layout { max-width: 1060px; margin: 0 auto; padding: 32px 20px; display: grid; grid-template-columns: 1fr 310px; gap: 24px; align-items: start; }
+@media(max-width:860px){ .anfrage-layout { grid-template-columns: 1fr; } }
+
+.success-card { display:none; background:#fff; border:1px solid #e5edf5; border-radius:20px; padding:48px 32px; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,.07); }
+.success-card .s-icon { font-size:52px; margin-bottom:16px; }
+.success-card h2 { font-size:22px; font-weight:800; color:var(--black); margin-bottom:10px; }
+.success-card p { font-size:14px; color:#666; line-height:1.7; }
+.success-card a { color:var(--yellow); font-weight:700; text-decoration:none; }
+
+.form-card { background:#fff; border:1px solid #e8e8e8; border-radius:20px; overflow:hidden; box-shadow:0 2px 16px rgba(0,0,0,.06); }
+.form-card-head { background:var(--black); padding:20px 28px; display:flex; align-items:center; gap:14px; border-bottom:1px solid rgba(229,167,22,.15); }
+.fch-icon { width:40px; height:40px; border-radius:12px; background:rgba(229,167,22,.15); border:1px solid rgba(229,167,22,.3); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+.fch-badge { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--yellow); display:block; margin-bottom:2px; }
+.fch-title { font-size:18px; font-weight:700; color:#fff; }
+.form-body { padding:24px 28px; }
+.form-subtitle { font-size:13px; color:#999; margin-bottom:20px; }
+
+.fsec { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--yellow); padding:16px 0 8px; border-top:1px solid #f0f0f0; margin-top:8px; }
+.fsec:first-of-type { border-top:none; padding-top:0; margin-top:0; }
+
+.f-group { margin-bottom:16px; }
+.f-label { display:block; font-size:12px; font-weight:700; color:#333; margin-bottom:6px; letter-spacing:.03em; }
+.req { color:#ef4444; }
+.f-input { width:100%; background:#f9f9f9; border:1.5px solid #e8e8e8; border-radius:10px; padding:11px 14px; font-size:14px; color:var(--black); font-family:'Poppins',sans-serif; transition:.2s; box-sizing:border-box; }
+.f-input:focus { outline:none; border-color:var(--yellow); background:#fff; box-shadow:0 0 0 3px rgba(229,167,22,.12); }
+textarea.f-input { resize:vertical; min-height:80px; }
+.f-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media(max-width:480px){ .f-row { grid-template-columns:1fr; } }
+
+.toggle-group { display:flex; flex-wrap:wrap; gap:8px; }
+.toggle-btn { background:#f5f5f5; border:1.5px solid #e8e8e8; color:#555; font-size:13px; font-weight:600; padding:8px 16px; border-radius:8px; cursor:pointer; transition:.2s; font-family:'Poppins',sans-serif; }
+.toggle-btn.active, .toggle-btn:hover { background:var(--black); border-color:var(--black); color:var(--yellow); }
+
+.radio-group { display:flex; gap:16px; }
+.radio-group label { display:flex; align-items:center; gap:7px; font-size:14px; font-weight:600; color:#555; cursor:pointer; }
+.radio-group input[type=radio] { accent-color:var(--yellow); width:16px; height:16px; }
+
+.qty-group { background:#f9f9f9; border:1.5px solid #e8e8e8; border-radius:12px; overflow:hidden; }
+.qty-row { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; }
+.qty-row + .qty-row { border-top:1px solid #f0f0f0; }
+.qty-label { font-size:13px; font-weight:600; color:#555; }
+.qty-controls { display:flex; align-items:center; gap:12px; }
+.qty-btn { width:30px; height:30px; border-radius:8px; background:#fff; border:1.5px solid #e8e8e8; color:var(--black); font-size:16px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; }
+.qty-btn:hover:not(:disabled) { background:var(--black); border-color:var(--black); color:var(--yellow); }
+.qty-btn:disabled { opacity:.35; cursor:not-allowed; }
+.qty-number { font-size:16px; font-weight:800; color:var(--black); min-width:24px; text-align:center; }
+
+.kindersitz-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.ks-toggle-wrap { display:flex; align-items:center; gap:8px; font-size:12px; color:#888; }
+.ks-toggle-wrap input[type=checkbox] { width:16px; height:16px; accent-color:var(--yellow); cursor:pointer; }
+.free-tag { color:#16a34a; font-size:11px; font-weight:600; margin-left:6px; }
+
+.uhrzeit-btn { background:#f9f9f9; border:1.5px solid #e8e8e8; border-radius:10px; padding:11px 14px; text-align:left; cursor:pointer; color:#999; font-size:14px; width:100%; font-family:'Poppins',sans-serif; transition:.2s; }
+.uhrzeit-btn:hover { border-color:var(--yellow); }
+
+.anfrage-sidebar { display:flex; flex-direction:column; gap:16px; }
+.sidebar-card { background:#fff; border:1px solid #e8e8e8; border-radius:20px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.05); }
+.sc-head { background:var(--black); padding:16px 20px; }
+.sc-head-badge { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--yellow); display:block; margin-bottom:2px; }
+.sc-head-title { font-size:16px; font-weight:700; color:#fff; }
+.sc-phone { display:block; font-size:24px; font-weight:800; color:var(--yellow); padding:16px 20px; border-bottom:1px solid #f0f0f0; text-decoration:none; }
+.sc-sub { font-size:12px; color:#888; padding:8px 20px 16px; }
+.sc-body { padding:16px 20px; }
+.sc-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#666; margin-bottom:10px; }
+.sc-item:last-child { margin-bottom:0; }
+.sc-item .emi { font-size:15px; flex-shrink:0; margin-top:1px; }
+.sc-links a { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; font-size:13px; font-weight:600; color:#444; border-bottom:1px solid #f5f5f5; transition:.2s; text-decoration:none; }
+.sc-links a:hover { background:#f9f9f9; color:var(--yellow); }
+.sc-links a:last-child { border-bottom:none; }
+
+.sticky-bottom { position:fixed; bottom:0; left:0; right:0; z-index:100; background:var(--black); border-top:1px solid rgba(229,167,22,.3); }
+.sticky-info-bar { display:flex; justify-content:center; gap:16px; padding:6px 16px; flex-wrap:wrap; font-size:11px; color:#666; border-bottom:1px solid rgba(255,255,255,.06); }
+.sticky-submit-area { padding:10px 16px; display:flex; justify-content:center; }
+.btn-anfrage-submit { background:var(--yellow); color:var(--black); font-weight:800; font-size:15px; padding:14px 48px; border-radius:12px; border:none; cursor:pointer; transition:.2s; font-family:'Poppins',sans-serif; box-shadow:0 4px 16px rgba(229,167,22,.35); }
+.btn-anfrage-submit:hover:not(:disabled) { background:#d4960e; transform:translateY(-1px); }
+.btn-anfrage-submit:disabled { opacity:.6; cursor:wait; }
+
+.whatsapp-fab { position:fixed; bottom:90px; right:20px; z-index:99; width:52px; height:52px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(37,211,102,.4); transition:.2s; text-decoration:none; }
+.whatsapp-fab:hover { transform:scale(1.1); }
+.whatsapp-fab svg { width:26px; height:26px; fill:#fff; }
+
+.time-modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; align-items:center; justify-content:center; }
+.time-modal-box { background:#fff; border-radius:20px; padding:32px; min-width:300px; box-shadow:0 20px 60px rgba(0,0,0,.3); font-family:'Poppins',sans-serif; }
+.time-modal-box h3 { font-size:18px; font-weight:700; color:var(--black); margin-bottom:24px; text-align:center; }
+.time-inputs { display:flex; gap:20px; justify-content:center; margin-bottom:24px; }
+.time-col { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.time-col label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#888; }
+.ctrl-row { display:flex; align-items:center; gap:8px; }
+.time-ctrl-btn { width:36px; height:36px; border-radius:8px; background:#f5f5f5; border:1.5px solid #e8e8e8; font-size:18px; font-weight:700; cursor:pointer; color:var(--black); transition:.2s; font-family:'Poppins',sans-serif; }
+.time-ctrl-btn:hover { background:var(--black); border-color:var(--black); color:var(--yellow); }
+.ctrl-row input { width:60px; text-align:center; font-size:24px; font-weight:800; color:var(--black); border:1.5px solid #e8e8e8; border-radius:8px; padding:6px; background:#f9f9f9; font-family:'Poppins',sans-serif; }
+.btn-time-confirm { width:100%; background:var(--black); color:var(--yellow); font-weight:700; font-size:15px; padding:13px; border-radius:10px; border:none; cursor:pointer; font-family:'Poppins',sans-serif; }
+</style>
+  <script>window.TF_NEEDS_MAPS = true;</script>
+  <script src="cookie.js?v=20260418"></script>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo-icon">🚖</div>
+      <div class="logo-text">
+        <span class="logo-name">Taxi</span>
+        <span class="logo-sub">Freising</span>
+      </div>
     </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+        <li><a href="index.html#vorteile">Vorteile</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="preise.html">Tarife</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <div class="header-divider"></div>
+      <a href="anfrage.html" class="btn-book-header">
+        <span>🚖</span> Jetzt buchen
+      </a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
-    <span></span><span></span><span></span>
-  </button>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leistungen.html">Leistungen</a></li>
-      <li><a href="preise.html">Tarife</a></li>
-      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-    </ul>
-  </nav>
 </header>
 
-<section style="padding: 80px 32px; background: var(--surface);">
-  <div class="container">
-    <h1 style="text-align: center; margin-bottom: 48px;">Online Buchen</h1>
+<div class="page-hero">
+  <div class="section-label">BUCHUNGSFORMULAR</div>
+  <h1>Fahrt <span class="accent">anfragen</span></h1>
+  <p>Formular ausfüllen – wir senden Ihr Festpreisangebot umgehend per E-Mail.</p>
+</div>
 
-    <div class="form-section">
-      <div id="successBox">
-        <h3>✓ Anfrage gesendet!</h3>
-        <p>Vielen Dank für Ihre Anfrage. Wir melden uns in Kürze mit einem Angebot.</p>
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="ti">⚡</span> Schnelle Bestätigung</div>
+    <div class="trust-item"><span class="ti">🚫</span> Kostenloser Storno bis 3 Std.</div>
+    <div class="trust-item"><span class="ti">€</span> Festpreisgarantie</div>
+    <div class="trust-item"><span class="ti">✈️</span> Flugüberwachung</div>
+  </div>
+</div>
+
+<div class="anfrage-layout">
+
+  <div>
+    <div id="successCard" class="success-card">
+      <div class="s-icon">✅</div>
+      <h2>Anfrage erfolgreich gesendet!</h2>
+      <p>Vielen Dank! Wir senden Ihnen schnellstmöglich ein Festpreisangebot per E-Mail.</p>
+      <p style="margin-top:12px">Dringende Anfragen: <a href="tel:+4915141620000">0151 4162 0000</a></p>
+    </div>
+
+    <div class="form-card" id="formCard">
+      <div class="form-card-head">
+        <div class="fch-icon">📋</div>
+        <div>
+          <span class="fch-badge">Buchungsformular</span>
+          <span class="fch-title">Transfer anfragen</span>
+        </div>
       </div>
+      <div class="form-body">
+        <p class="form-subtitle">Felder mit * sind Pflichtfelder</p>
+        <form id="anfrageForm">
 
-      <form id="anfrageForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Anrede *</label>
-            <select name="anrede" required>
-              <option value="">-- Bitte wählen --</option>
-              <option value="Herr">Herr</option>
-              <option value="Frau">Frau</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Vorname *</label>
-            <input type="text" name="vorname" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nachname *</label>
-            <input type="text" name="nachname" required>
-          </div>
-          <div class="form-group">
-            <label>E-Mail *</label>
-            <input type="email" name="email" required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Telefon *</label>
-          <input type="tel" name="phone" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Abholort *</label>
-            <input type="text" name="abholort" placeholder="z.B. Freising, Hauptstraße 1" required>
-          </div>
-          <div class="form-group">
-            <label>Zielort *</label>
-            <input type="text" name="zielort" placeholder="z.B. München Flughafen" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Abholdatum *</label>
-            <input type="date" name="abholdatum" required>
-          </div>
-          <div class="form-group">
-            <label>Abholzeit *</label>
-            <input type="time" name="abholzeit" required>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Anzahl Fahrgäste *</label>
-            <input type="number" name="fahrgaeste" min="1" required>
-          </div>
-          <div class="form-group">
-            <label>Fahrzeugwunsch</label>
-            <select name="fahrzeug">
-              <option value="">-- Keine Angabe --</option>
-              <option value="Kombi">Kombi</option>
-              <option value="Van">Van</option>
-              <option value="Limousine">Limousine</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Anzahl Gepäckstücke</label>
-            <input type="number" name="gepaeck" min="0" value="0">
-          </div>
-          <div class="form-group">
-            <label>Flugnummer (falls relevant)</label>
-            <input type="text" name="flugnummer">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Anmerkungen</label>
-          <textarea name="anmerkungen" placeholder="z.B. besondere Wünsche oder Anforderungen"></textarea>
-        </div>
-
-        <div style="background: var(--green-light); border: 1px solid #a7f3d0; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
-          <h4 style="color: var(--green); margin-bottom: 12px;">Kindersitze</h4>
-          <div class="form-row">
-            <div class="form-group">
-              <label>👶 Babyschale (0-2 Jahre)</label>
-              <input type="number" name="kindersitz_baby" min="0" value="0">
-            </div>
-            <div class="form-group">
-              <label>🧒 Kindersitz (2-12 Jahre)</label>
-              <input type="number" name="kindersitz_kinder" min="0" value="0">
-            </div>
-            <div class="form-group">
-              <label>📦 Sitzerhöher</label>
-              <input type="number" name="kindersitz_sitz" min="0" value="0">
+          <div class="fsec">Art der Anfrage</div>
+          <div class="f-group">
+            <div class="radio-group">
+              <label><input type="radio" name="buchungstyp" value="Buchung" checked> <span>Buchung</span></label>
+              <label><input type="radio" name="buchungstyp" value="Anfrage"> <span>Anfrage</span></label>
             </div>
           </div>
-        </div>
 
-        <button type="submit" id="submitBtn" class="btn-primary" style="width: 100%; padding: 16px;">
-          Anfrage senden / Send Request
-        </button>
-      </form>
+          <div class="fsec">Persönliche Daten</div>
+
+          <div class="f-group">
+            <span class="f-label">Anrede <span class="req">*</span></span>
+            <div class="toggle-group" id="anredeGroup">
+              <button type="button" class="toggle-btn active" data-value="Herr">Herr</button>
+              <button type="button" class="toggle-btn" data-value="Frau">Frau</button>
+            </div>
+            <input type="hidden" name="anrede" id="anredeInput" value="Herr">
+          </div>
+
+          <div class="f-group">
+            <span class="f-label">Name <span class="req">*</span></span>
+            <div class="f-row">
+              <input type="text" name="vorname" class="f-input" required placeholder="Vorname">
+              <input type="text" name="nachname" class="f-input" required placeholder="Nachname">
+            </div>
+          </div>
+
+          <div class="f-group">
+            <label class="f-label">E-Mail <span class="req">*</span></label>
+            <input type="email" name="email" class="f-input" required placeholder="ihre@email.de">
+          </div>
+
+          <div class="f-group">
+            <label class="f-label">Telefon / WhatsApp <span class="req">*</span></label>
+            <input type="tel" name="phone" class="f-input" required placeholder="+49 151 ...">
+          </div>
+
+          <div class="fsec">Route &amp; Termin</div>
+
+          <div class="f-group">
+            <label class="f-label">Abholort / Von <span class="req">*</span></label>
+            <input type="text" id="abholort_input" name="abholort" class="f-input" required placeholder="z.B. Freising, Hauptstraße 1">
+          </div>
+
+          <div class="f-group">
+            <label class="f-label">Zielort / Nach <span class="req">*</span></label>
+            <input type="text" id="zielort_input" name="zielort" class="f-input" required placeholder="z.B. Flughafen München Terminal 1">
+          </div>
+
+          <div class="f-group">
+            <span class="f-label">Abholdatum &amp; Uhrzeit <span class="req">*</span></span>
+            <div class="f-row">
+              <input type="date" name="abholdatum" id="abholdatum_input" class="f-input" required>
+              <button type="button" class="uhrzeit-btn" id="abholzeit_btn" onclick="openTimeModal('abholzeit')">Uhrzeit wählen</button>
+            </div>
+            <input type="hidden" name="abholzeit" id="abholzeit_input" required>
+          </div>
+
+          <div class="fsec">Passagiere &amp; Gepäck</div>
+
+          <div class="f-group">
+            <span class="f-label">Fahrgäste &amp; Gepäck <span class="req">*</span></span>
+            <div class="qty-group">
+              <div class="qty-row">
+                <span class="qty-label">👥 Fahrgäste (inkl. Kinder)</span>
+                <div class="qty-controls">
+                  <button type="button" class="qty-btn" id="paxMinus" onclick="changeQty('pax',-1)" disabled>−</button>
+                  <span class="qty-number" id="paxNum">1</span>
+                  <button type="button" class="qty-btn" id="paxPlus" onclick="changeQty('pax',1)">+</button>
+                </div>
+              </div>
+              <div class="qty-row">
+                <span class="qty-label">🧳 Gepäck (Koffer/Taschen)</span>
+                <div class="qty-controls">
+                  <button type="button" class="qty-btn" id="gepMinus" onclick="changeQty('gep',-1)" disabled>−</button>
+                  <span class="qty-number" id="gepNum">0</span>
+                  <button type="button" class="qty-btn" id="gepPlus" onclick="changeQty('gep',1)">+</button>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="fahrgaeste" id="fahrgaesteInput" value="1">
+            <input type="hidden" name="gepaeck" id="gepaeckInput" value="0">
+          </div>
+
+          <div class="f-group">
+            <div class="kindersitz-header">
+              <span class="f-label" style="margin-bottom:0">Extras — Kindersitz <span class="free-tag">Kostenlos</span></span>
+              <div class="ks-toggle-wrap">
+                <span>Hinzufügen</span>
+                <input type="checkbox" id="kindersitzToggle" onchange="toggleKindersitzSection()">
+              </div>
+            </div>
+            <div id="kindersitzSection" style="display:none;margin-top:10px">
+              <div class="qty-group">
+                <div class="qty-row">
+                  <span class="qty-label">👶 Babyschale (0–12 Mon.)</span>
+                  <div class="qty-controls">
+                    <button type="button" class="qty-btn" id="babyMinus" onclick="changeQty('baby',-1)" disabled>−</button>
+                    <span class="qty-number" id="babyNum">0</span>
+                    <button type="button" class="qty-btn" id="babyPlus" onclick="changeQty('baby',1)">+</button>
+                  </div>
+                </div>
+                <div class="qty-row">
+                  <span class="qty-label">🪑 Kindersitz (1–4 J., bis 18 kg)</span>
+                  <div class="qty-controls">
+                    <button type="button" class="qty-btn" id="kinderMinus" onclick="changeQty('kinder',-1)" disabled>−</button>
+                    <span class="qty-number" id="kinderNum">0</span>
+                    <button type="button" class="qty-btn" id="kinderPlus" onclick="changeQty('kinder',1)">+</button>
+                  </div>
+                </div>
+                <div class="qty-row">
+                  <span class="qty-label">📦 Sitzerhöhung (4–12 J., bis 36 kg)</span>
+                  <div class="qty-controls">
+                    <button type="button" class="qty-btn" id="sitzMinus" onclick="changeQty('sitz',-1)" disabled>−</button>
+                    <span class="qty-number" id="sitzNum">0</span>
+                    <button type="button" class="qty-btn" id="sitzPlus" onclick="changeQty('sitz',1)">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="kindersitz_baby" id="kindersitzBabyInput" value="0">
+            <input type="hidden" name="kindersitz_kinder" id="kindersitzKinderInput" value="0">
+            <input type="hidden" name="kindersitz_sitz" id="kindersitzSitzInput" value="0">
+          </div>
+
+          <div class="f-group">
+            <span class="f-label">Fahrzeugwunsch</span>
+            <div class="toggle-group" id="fahrzeugGroup">
+              <button type="button" class="toggle-btn active" data-value="Kombi">🚗 Kombi</button>
+              <button type="button" class="toggle-btn" data-value="Van">🚐 Van / Großraum</button>
+              <button type="button" class="toggle-btn" data-value="">Egal</button>
+            </div>
+            <input type="hidden" name="fahrzeug" id="fahrzeugInput" value="Kombi">
+          </div>
+
+          <div class="fsec">Zahlung &amp; Extras</div>
+
+          <div class="f-group">
+            <span class="f-label">Zahlungsmethode</span>
+            <div class="toggle-group" id="zahlungGroup">
+              <button type="button" class="toggle-btn active" data-value="Barzahlung">💵 Barzahlung</button>
+              <button type="button" class="toggle-btn" data-value="Kreditkarte">💳 Kreditkarte</button>
+            </div>
+            <input type="hidden" name="zahlung" id="zahlungInput" value="Barzahlung">
+          </div>
+
+          <div class="f-group">
+            <span class="f-label">Rückfahrt (optional)</span>
+            <div class="f-row">
+              <input type="date" name="rueckfahrt_datum" id="rueckfahrt_datum_input" class="f-input">
+              <button type="button" class="uhrzeit-btn" id="rueckfahrt_zeit_btn" onclick="openTimeModal('rueckfahrt_zeit')">Uhrzeit wählen</button>
+            </div>
+            <input type="hidden" name="rueckfahrt_zeit" id="rueckfahrt_zeit_input">
+          </div>
+
+          <div class="f-group">
+            <label class="f-label">Flugnummer (optional)</label>
+            <input type="text" name="flugnummer" class="f-input" placeholder="z.B. LH1234">
+          </div>
+
+          <div class="f-group">
+            <label class="f-label">Anmerkungen / Wünsche</label>
+            <textarea name="anmerkungen" class="f-input" placeholder="Besondere Wünsche, Hinweise..."></textarea>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
-</section>
 
-<footer>
+  <aside class="anfrage-sidebar">
+    <div class="sidebar-card">
+      <div class="sc-head">
+        <span class="sc-head-badge">Direkt buchen</span>
+        <span class="sc-head-title">24/7 erreichbar</span>
+      </div>
+      <a href="tel:+4915141620000" class="sc-phone">0151 4162 0000</a>
+      <p class="sc-sub">Oder schreiben Sie uns auf WhatsApp — wir antworten sofort.</p>
+      <div style="padding:0 20px 16px">
+        <a href="https://wa.me/4915141620000" target="_blank" rel="noopener noreferrer"
+          style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;font-weight:700;font-size:13px;padding:11px;border-radius:10px;text-decoration:none;">
+          💬 WhatsApp schreiben
+        </a>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sc-head">
+        <span class="sc-head-badge">Inklusive</span>
+        <span class="sc-head-title">Alles dabei</span>
+      </div>
+      <div class="sc-body">
+        <div class="sc-item"><span class="emi">✈️</span><span>Flugüberwachung – kostenlose Wartezeit bei Verspätung</span></div>
+        <div class="sc-item"><span class="emi">🚫</span><span>Kostenloser Storno bis 3 Stunden vorher</span></div>
+        <div class="sc-item"><span class="emi">€</span><span>Festpreisgarantie – kein Taxameter</span></div>
+        <div class="sc-item"><span class="emi">🪑</span><span>Kindersitze kostenlos auf Anfrage</span></div>
+        <div class="sc-item"><span class="emi">🧳</span><span>Gepäckhilfe inbegriffen</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sc-links">
+        <a href="preise.html">€ Preisübersicht <span>›</span></a>
+        <a href="flughafentransfer.html">✈️ Flughafentransfer <span>›</span></a>
+        <a href="leistungen.html">🚗 Unsere Fahrzeuge <span>›</span></a>
+        <a href="kontakt.html">📞 Kontakt <span>›</span></a>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<a href="https://wa.me/4915141620000" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" title="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div id="timeModal" class="time-modal-overlay">
+  <div class="time-modal-box">
+    <h3>Uhrzeit wählen</h3>
+    <div class="time-inputs">
+      <div class="time-col">
+        <label>Stunden</label>
+        <div class="ctrl-row">
+          <button type="button" class="time-ctrl-btn" onclick="changeTimeValue('hour',-1)">−</button>
+          <input type="number" id="hourInput" min="0" max="23" value="00" onchange="validateHour()">
+          <button type="button" class="time-ctrl-btn" onclick="changeTimeValue('hour',1)">+</button>
+        </div>
+      </div>
+      <div class="time-col">
+        <label>Minuten (15er)</label>
+        <div class="ctrl-row">
+          <button type="button" class="time-ctrl-btn" onclick="changeTimeValue('min',-1)">−</button>
+          <input type="text" id="minInput" value="00" readonly style="cursor:default">
+          <button type="button" class="time-ctrl-btn" onclick="changeTimeValue('min',1)">+</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn-time-confirm" onclick="closeTimeModal()">✓ Fertig</button>
+  </div>
+</div>
+
+<div class="sticky-bottom">
+  <div class="sticky-info-bar">
+    <span>🚫 Kostenloser Storno bis 3 Std.</span>
+    <span>·</span>
+    <span>€ Festpreis garantiert</span>
+    <span>·</span>
+    <span>✈️ Flugüberwachung inklusive</span>
+  </div>
+  <div class="sticky-submit-area">
+    <button type="button" class="btn-anfrage-submit" id="submitBtn" onclick="submitForm()">
+      ✈️ Anfrage senden
+    </button>
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div>
-        <h4>Taxi Freising</h4>
-        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>🚖</span>
+          <div><strong>Taxi</strong> Freising</div>
+        </div>
+        <p>N &amp; N Taxi GbR<br>Eisvogelweg 2<br>85356 Freising</p>
+        <div class="footer-contact">
+          <a href="tel:+4915141620000">📞 0151 4162 0000</a>
+          <a href="mailto:osman@taxifreising.de">✉️ osman@taxifreising.de</a>
+        </div>
       </div>
-      <div>
-        <h4>Kontakt</h4>
-        <p>
-          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
-          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
-        </p>
-      </div>
-      <div>
+      <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="preise.html">Preise</a></li>
-          <li><a href="anfrage.html">Buchen</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="preise.html">Tarife</a></li>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </div>
-      <div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+          <li><a href="leistungen.html">Kombi-Fahrzeug</a></li>
+          <li><a href="leistungen.html">Grossraum-Taxi</a></li>
+          <li><a href="leistungen.html">Kurierfahrten</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <h4>Rechtliches</h4>
         <ul>
           <li><a href="impressum.html">Impressum</a></li>
@@ -183,12 +481,192 @@
         </ul>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
-      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Taxi Freising – N &amp; N Taxi GbR. Alle Rechte vorbehalten.</p>
     </div>
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script>
+function initToggleGroup(groupId, inputId) {
+  const group = document.getElementById(groupId);
+  if (!group) return;
+  group.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById(inputId).value = this.dataset.value;
+    });
+  });
+}
+initToggleGroup('anredeGroup','anredeInput');
+initToggleGroup('fahrzeugGroup','fahrzeugInput');
+initToggleGroup('zahlungGroup','zahlungInput');
+
+function toggleKindersitzSection() {
+  const cb = document.getElementById('kindersitzToggle');
+  const sec = document.getElementById('kindersitzSection');
+  sec.style.display = cb.checked ? 'block' : 'none';
+  if (!cb.checked) {
+    ['babyNum','kinderNum','sitzNum'].forEach(id => document.getElementById(id).textContent = '0');
+    ['kindersitzBabyInput','kindersitzKinderInput','kindersitzSitzInput'].forEach(id => document.getElementById(id).value = '0');
+    ['babyMinus','kinderMinus','sitzMinus'].forEach(id => document.getElementById(id).disabled = true);
+  }
+}
+
+function changeQty(type, delta) {
+  const map = {
+    pax:   { num:'paxNum',   inp:'fahrgaesteInput',     min:1 },
+    gep:   { num:'gepNum',   inp:'gepaeckInput',         min:0 },
+    baby:  { num:'babyNum',  inp:'kindersitzBabyInput',  min:0 },
+    kinder:{ num:'kinderNum',inp:'kindersitzKinderInput',min:0 },
+    sitz:  { num:'sitzNum',  inp:'kindersitzSitzInput',  min:0 },
+  };
+  const m = map[type]; if (!m) return;
+  let v = Math.max(m.min, parseInt(document.getElementById(m.num).textContent) + delta);
+  document.getElementById(m.num).textContent = v;
+  document.getElementById(m.inp).value = v;
+  const minBtn = document.getElementById(type === 'pax' ? 'paxMinus' : type === 'gep' ? 'gepMinus' : type + 'Minus');
+  if (minBtn) minBtn.disabled = v <= m.min;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const d = document.getElementById('abholdatum_input');
+  if (d) d.min = new Date().toISOString().split('T')[0];
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('abholort')) document.querySelector('[name="abholort"]').value = p.get('abholort');
+  if (p.get('zielort'))  document.querySelector('[name="zielort"]').value  = p.get('zielort');
+  if (p.get('datetime')) {
+    const dt = p.get('datetime');
+    if (dt.includes('T')) {
+      document.getElementById('abholdatum_input').value = dt.split('T')[0];
+      const time = dt.split('T')[1].substring(0,5);
+      document.getElementById('abholzeit_input').value = time;
+      document.getElementById('abholzeit_btn').textContent = time;
+      document.getElementById('abholzeit_btn').style.color = '#e5a716';
+    }
+  }
+  if (p.get('fahrgaeste')) {
+    const v = Math.max(1, parseInt(p.get('fahrgaeste')) || 1);
+    document.getElementById('paxNum').textContent = v;
+    document.getElementById('fahrgaesteInput').value = v;
+    document.getElementById('paxMinus').disabled = v <= 1;
+  }
+});
+
+const API_URL = 'https://taxifreising.de/api';
+async function submitForm() {
+  const form = document.getElementById('anfrageForm');
+  const required = form.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(el => {
+    if (!el.value.trim()) { el.style.borderColor = '#ef4444'; valid = false; }
+    else el.style.borderColor = '';
+  });
+  if (!valid) { alert('Bitte alle Pflichtfelder ausfüllen.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet...';
+
+  const data = {
+    buchungstyp:       form.querySelector('[name="buchungstyp"]:checked')?.value || 'Anfrage',
+    anrede:            document.getElementById('anredeInput').value,
+    vorname:           form.querySelector('[name="vorname"]').value.trim(),
+    nachname:          form.querySelector('[name="nachname"]').value.trim(),
+    email:             form.querySelector('[name="email"]').value.trim(),
+    phone:             form.querySelector('[name="phone"]').value.trim(),
+    abholort:          form.querySelector('[name="abholort"]').value.trim(),
+    zielort:           form.querySelector('[name="zielort"]').value.trim(),
+    abholdatum:        form.querySelector('[name="abholdatum"]').value,
+    abholzeit:         form.querySelector('[name="abholzeit"]').value,
+    fahrgaeste:        document.getElementById('fahrgaesteInput').value,
+    gepaeck:           document.getElementById('gepaeckInput').value,
+    fahrzeug:          document.getElementById('fahrzeugInput').value,
+    zahlung:           document.getElementById('zahlungInput').value,
+    rueckfahrt_datum:  form.querySelector('[name="rueckfahrt_datum"]').value || null,
+    rueckfahrt_zeit:   form.querySelector('[name="rueckfahrt_zeit"]').value || null,
+    kindersitz_baby:   document.getElementById('kindersitzBabyInput').value,
+    kindersitz_kinder: document.getElementById('kindersitzKinderInput').value,
+    kindersitz_sitz:   document.getElementById('kindersitzSitzInput').value,
+    flugnummer:        form.querySelector('[name="flugnummer"]').value.trim() || null,
+    anmerkungen:       form.querySelector('[name="anmerkungen"]').value.trim() || null,
+  };
+
+  try {
+    const res = await fetch(API_URL + '/inquiries', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    if (result.success) {
+      document.getElementById('formCard').style.display = 'none';
+      document.getElementById('successCard').style.display = 'block';
+      document.querySelector('.sticky-bottom').style.display = 'none';
+    } else {
+      alert('Fehler: ' + (result.error || 'Unbekannt'));
+      btn.disabled = false;
+      btn.textContent = '✈️ Anfrage senden';
+    }
+  } catch (e) {
+    alert('Verbindungsfehler. Bitte rufen Sie uns an: 0151 4162 0000');
+    btn.disabled = false;
+    btn.textContent = '✈️ Anfrage senden';
+  }
+}
+
+function initAutocomplete() {
+  if (typeof google === 'undefined' || !google.maps || !google.maps.places) { setTimeout(initAutocomplete, 500); return; }
+  const opts = { componentRestrictions: { country: ['de','at','ch'] }, fields: ['formatted_address','geometry','name'], types: ['geocode'] };
+  try {
+    const ac1 = new google.maps.places.Autocomplete(document.getElementById('abholort_input'), opts);
+    const ac2 = new google.maps.places.Autocomplete(document.getElementById('zielort_input'), opts);
+    ac1.addListener('place_changed', function() { const p = ac1.getPlace(); if (p && p.formatted_address) document.getElementById('abholort_input').value = p.formatted_address; });
+    ac2.addListener('place_changed', function() { const p = ac2.getPlace(); if (p && p.formatted_address) document.getElementById('zielort_input').value = p.formatted_address; });
+  } catch(e) {}
+}
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initAutocomplete); } else { initAutocomplete(); }
+
+let currentTimeField = '';
+function openTimeModal(fieldName) {
+  currentTimeField = fieldName;
+  const input = document.getElementById(fieldName + '_input');
+  let hours = '00', mins = '00';
+  if (input && input.value) { const p = input.value.split(':'); hours = String(parseInt(p[0])||0).padStart(2,'0'); mins = String(parseInt(p[1])||0).padStart(2,'0'); }
+  document.getElementById('hourInput').value = hours;
+  document.getElementById('minInput').value = mins;
+  document.getElementById('timeModal').style.display = 'flex';
+}
+function closeTimeModal() {
+  const hours = String(parseInt(document.getElementById('hourInput').value)||0).padStart(2,'0');
+  const mins  = String(parseInt(document.getElementById('minInput').value)||0).padStart(2,'0');
+  const timeStr = hours + ':' + mins;
+  const inp = document.getElementById(currentTimeField + '_input');
+  const btn = document.getElementById(currentTimeField + '_btn');
+  if (inp) inp.value = timeStr;
+  if (btn) { btn.textContent = timeStr; btn.style.color = '#e5a716'; }
+  document.getElementById('timeModal').style.display = 'none';
+}
+function validateHour() {
+  const h = document.getElementById('hourInput');
+  h.value = String(Math.max(0, Math.min(23, parseInt(h.value)||0))).padStart(2,'0');
+}
+function changeTimeValue(type, delta) {
+  const h = document.getElementById('hourInput');
+  const m = document.getElementById('minInput');
+  if (type === 'hour') {
+    h.value = String(Math.max(0, Math.min(23, (parseInt(h.value)||0) + delta))).padStart(2,'0');
+  } else {
+    let val = (parseInt(m.value)||0) + delta * 15;
+    if (val < 0)  { val = 45; changeTimeValue('hour', -1); }
+    else if (val > 45) { val = 0; changeTimeValue('hour', 1); }
+    m.value = String(val).padStart(2,'0');
+  }
+}
+document.getElementById('timeModal').addEventListener('click', function(e) {
+  if (e.target === this) closeTimeModal();
+});
+</script>
 </body>
 </html>

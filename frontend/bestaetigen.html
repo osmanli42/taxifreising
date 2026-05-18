@@ -3,128 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buchung bestätigen - Taxi Freising</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Buchung bestätigen – Taxi Freising</title>
+  <link rel="stylesheet" href="styles.css?v=20260418">
   <style>
-    .confirmation-box { background: var(--green-light); border: 2px solid var(--green); border-radius: 12px; padding: 32px; margin: 32px 0; text-align: center; }
-    .confirmation-box h2 { color: var(--green); font-size: 28px; margin-bottom: 16px; }
-    .confirmation-box p { color: var(--text-secondary); font-size: 15px; }
-    .price-display { font-size: 48px; font-weight: 800; color: var(--green); margin: 24px 0; }
+    .page-hero { background: var(--black); padding: 120px 0 48px; text-align: center; }
+    .page-hero h1 { font-size: clamp(28px,4vw,44px); font-weight: 800; color: var(--white); }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 16px; margin-top: 10px; }
+    .content-section { padding: 60px 0 80px; background: var(--gray); }
+    .card { background: var(--white); border-radius: 20px; box-shadow: 0 8px 40px rgba(0,0,0,0.1); padding: 40px; max-width: 640px; margin: 0 auto; }
+    .success-confirm {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 14px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .success-confirm h2 { color: #16a34a; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .success-confirm p { color: #15803d; font-size: 14px; }
+    .detail-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    .detail-table tr { border-bottom: 1.5px solid #f0f0f0; }
+    .detail-table tr:last-child { border-bottom: none; }
+    .detail-table td { padding: 14px 0; font-size: 15px; }
+    .detail-table td:first-child { color: #888; font-size: 13px; width: 40%; }
+    .detail-table td:last-child { color: var(--black); font-weight: 600; }
+    .price-big { font-size: 48px; font-weight: 800; color: var(--yellow); }
+    .btn-confirm {
+      width: 100%;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      border-radius: 12px;
+      padding: 18px 24px;
+      font-family: var(--font);
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      margin-bottom: 12px;
+    }
+    .btn-confirm:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+    .btn-confirm:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .btn-back {
+      width: 100%;
+      background: transparent;
+      color: var(--black);
+      border: 1.5px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 16px 24px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .btn-back:hover { border-color: var(--black); }
   </style>
+  <script src="cookie.js?v=20260418"></script>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <div class="logo-text">Taxi Freising<small>24/7 Taxiservice</small></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo-icon">🚖</div>
+      <div class="logo-text">
+        <span class="logo-name">Taxi</span>
+        <span class="logo-sub">Freising</span>
+      </div>
     </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+        <li><a href="index.html#vorteile">Vorteile</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="preise.html">Tarife</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-cta">
+      <div class="header-divider"></div>
+      <a href="anfrage.html" class="btn-book-header">
+        <span>🚖</span> Jetzt buchen
+      </a>
+    </div>
+    <button class="mobile-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Menü">
-    <span></span><span></span><span></span>
-  </button>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leistungen.html">Leistungen</a></li>
-      <li><a href="preise.html">Tarife</a></li>
-      <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-      <li><a href="impressum.html">Impressum</a></li>
-    </ul>
-  </nav>
 </header>
 
-<section style="padding: 80px 32px; background: var(--surface);">
-  <div class="container" style="max-width: 640px;">
-    <h1 style="text-align: center; margin-bottom: 48px;">Buchung bestätigen</h1>
+<div class="page-hero">
+  <div class="section-label">BUCHUNG</div>
+  <h1>Buchung <span class="accent">bestätigen</span></h1>
+  <p>Bitte prüfen Sie Ihre Fahrtdetails und bestätigen Sie die Buchung.</p>
+</div>
 
-    <div id="loadingBox" style="text-align: center;">
-      <p>Laden...</p>
-    </div>
+<section class="content-section">
+  <div class="container">
+    <div class="card">
 
-    <div id="confirmationBox" style="display: none;">
-      <div class="confirmation-box">
-        <h2>🎉 Ihre Buchung</h2>
-        <p id="quoteMessage"></p>
+      <div id="loadingBox" style="text-align: center; padding: 20px 0;">
+        <p style="color: #888; font-size: 15px;">Daten werden geladen...</p>
       </div>
 
-      <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 24px;">
-        <h3 style="margin-bottom: 24px;">Fahrtdetails</h3>
-        <table style="width: 100%; margin-bottom: 24px;">
+      <div id="confirmationBox" style="display: none;">
+        <div class="success-confirm">
+          <h2 id="quoteMessage">Ihre Buchung</h2>
+        </div>
+
+        <h3 style="font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 20px;">Fahrtdetails</h3>
+        <table class="detail-table">
           <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary); width: 40%;">Von:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="abholort">-</td>
+            <td>Von</td>
+            <td id="abholort">–</td>
           </tr>
           <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Nach:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="zielort">-</td>
+            <td>Nach</td>
+            <td id="zielort">–</td>
           </tr>
           <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Datum:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="datum">-</td>
+            <td>Datum</td>
+            <td id="datum">–</td>
           </tr>
           <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Uhrzeit:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="zeit">-</td>
+            <td>Uhrzeit</td>
+            <td id="zeit">–</td>
           </tr>
           <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Fahrgäste:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="fahrgaeste">-</td>
+            <td>Fahrgäste</td>
+            <td id="fahrgaeste">–</td>
           </tr>
         </table>
 
-        <div style="border-top: 1px solid var(--border); padding-top: 24px; margin-top: 24px;">
-          <p style="color: var(--text-secondary); margin-bottom: 8px;">Gesamtpreis:</p>
-          <div class="price-display" id="price">-</div>
+        <div style="border-top: 1.5px solid #f0f0f0; padding-top: 24px; margin-bottom: 28px; text-align: center;">
+          <div style="font-size: 13px; color: #888; margin-bottom: 8px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;">Gesamtpreis</div>
+          <div class="price-big" id="price">–</div>
         </div>
+
+        <button id="confirmBtn" class="btn-confirm">Buchung verbindlich bestätigen →</button>
+        <button onclick="window.history.back()" class="btn-back">Zurück</button>
       </div>
 
-      <button id="confirmBtn" class="btn-primary" style="width: 100%; padding: 16px; margin-bottom: 16px;">
-        Buchung verbindlich bestätigen
-      </button>
-
-      <button onclick="window.history.back()" class="btn-secondary" style="width: 100%; padding: 16px;">
-        Zurück
-      </button>
-    </div>
-
-    <div id="successBox" style="display: none;">
-      <div class="confirmation-box">
-        <h2>✓ Buchung erfolgreich!</h2>
-        <p>Vielen Dank für Ihre Buchung. Eine Bestätigungsemail wurde Ihnen zugesandt.</p>
+      <div id="successBox" style="display: none; text-align: center;">
+        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 14px; padding: 40px 28px; margin-bottom: 24px;">
+          <div style="font-size: 48px; margin-bottom: 16px;">✓</div>
+          <h2 style="color: #16a34a; font-size: 22px; font-weight: 800; margin-bottom: 10px;">Buchung erfolgreich!</h2>
+          <p style="color: #15803d; font-size: 15px;">Vielen Dank für Ihre Buchung. Eine Bestätigungsemail wurde Ihnen zugesandt.</p>
+        </div>
+        <p style="color: #888; font-size: 14px;">
+          Bei Fragen: <a href="tel:+4915141620000" style="color: var(--yellow); font-weight: 700;">0151 4162 0000</a>
+        </p>
       </div>
-      <p style="text-align: center; color: var(--text-secondary); margin-top: 24px;">
-        Bei Fragen kontaktieren Sie uns: <a href="tel:+4915141620000" style="color: var(--accent);">+49 151 4162 0000</a>
-      </p>
+
     </div>
   </div>
 </section>
 
-<footer>
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div>
-        <h4>Taxi Freising</h4>
-        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>🚖</span>
+          <div><strong>Taxi</strong> Freising</div>
+        </div>
+        <p>N &amp; N Taxi GbR<br>Eisvogelweg 2<br>85356 Freising</p>
+        <div class="footer-contact">
+          <a href="tel:+4915141620000">📞 0151 4162 0000</a>
+          <a href="mailto:osman@taxifreising.de">✉️ osman@taxifreising.de</a>
+        </div>
       </div>
-      <div>
-        <h4>Kontakt</h4>
-        <p>
-          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
-          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
-        </p>
-      </div>
-      <div>
+      <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="preise.html">Preise</a></li>
-          <li><a href="anfrage.html">Buchen</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="preise.html">Tarife</a></li>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </div>
-      <div>
+      <div class="footer-col">
+        <h4>Leistungen</h4>
+        <ul>
+          <li><a href="flughafentransfer.html">Flughafentransfer</a></li>
+          <li><a href="leistungen.html">Kombi-Fahrzeug</a></li>
+          <li><a href="leistungen.html">Grossraum-Taxi</a></li>
+          <li><a href="leistungen.html">Kurierfahrten</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <h4>Rechtliches</h4>
         <ul>
           <li><a href="impressum.html">Impressum</a></li>
@@ -133,21 +203,21 @@
         </ul>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
-      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Taxi Freising – N &amp; N Taxi GbR. Alle Rechte vorbehalten.</p>
     </div>
   </div>
 </footer>
 
 <script>
-const API_URL = 'http://localhost:4002/api';
+const API_URL = 'https://taxifreising.de/api';
 
 document.addEventListener('DOMContentLoaded', async function() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get('token');
 
   if (!token) {
-    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Ungültiger Link</p>';
+    document.getElementById('loadingBox').innerHTML = '<p style="color: #e53e3e; font-size: 15px;">Ungültiger Link</p>';
     return;
   }
 
@@ -156,7 +226,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const data = await res.json();
 
     if (!res.ok) {
-      document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Fehler beim Laden der Daten</p>';
+      document.getElementById('loadingBox').innerHTML = '<p style="color: #e53e3e; font-size: 15px;">Fehler beim Laden der Daten</p>';
       return;
     }
 
@@ -168,14 +238,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('price').textContent = data.quoted_price + ' €';
 
     if (data.status === 'confirmed') {
-      document.getElementById('confirmationBox').style.display = 'none';
       document.getElementById('loadingBox').style.display = 'none';
       document.getElementById('successBox').style.display = 'block';
-      document.getElementById('quoteMessage').textContent = 'Ihre Buchung ist bereits bestätigt!';
     } else {
       document.getElementById('loadingBox').style.display = 'none';
       document.getElementById('confirmationBox').style.display = 'block';
-      document.getElementById('quoteMessage').textContent = 'Bitte bestätigen Sie Ihre Buchung:';
+      document.getElementById('quoteMessage').textContent = 'Bitte bestätigen Sie Ihre Buchung';
 
       document.getElementById('confirmBtn').addEventListener('click', async function() {
         this.disabled = true;
@@ -189,17 +257,17 @@ document.addEventListener('DOMContentLoaded', async function() {
           } else {
             alert('Fehler bei der Bestätigung. Bitte versuchen Sie es später erneut.');
             this.disabled = false;
-            this.textContent = 'Buchung verbindlich bestätigen';
+            this.textContent = 'Buchung verbindlich bestätigen →';
           }
         } catch (err) {
           alert('Verbindungsfehler');
           this.disabled = false;
-          this.textContent = 'Buchung verbindlich bestätigen';
+          this.textContent = 'Buchung verbindlich bestätigen →';
         }
       });
     }
   } catch (err) {
-    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Fehler beim Laden</p>';
+    document.getElementById('loadingBox').innerHTML = '<p style="color: #e53e3e; font-size: 15px;">Fehler beim Laden</p>';
   }
 });
 </script>

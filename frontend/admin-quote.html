@@ -3,112 +3,212 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Angebot erstellen - Admin</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Angebot erstellen – Taxi Freising Admin</title>
+  <link rel="stylesheet" href="styles.css?v=20260418">
+  <style>
+    .page-hero { background: var(--black); padding: 100px 0 36px; text-align: center; }
+    .page-hero h1 { font-size: clamp(24px,4vw,36px); font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    .page-hero p { color: rgba(255,255,255,0.5); font-size: 14px; }
+    .content-section { padding: 40px 0 80px; background: var(--gray); min-height: 60vh; }
+    .admin-layout { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+    .info-card { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,.08); overflow: hidden; margin-bottom: 20px; }
+    .card-head { background: var(--black); padding: 18px 28px; display: flex; align-items: center; gap: 12px; }
+    .card-head-icon { width: 36px; height: 36px; background: rgba(229,167,22,.15); border: 1px solid rgba(229,167,22,.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .card-head-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--yellow); }
+    .card-head-title { font-size: 16px; font-weight: 700; color: #fff; }
+    .card-body { padding: 24px 28px; }
+
+    .detail-table { width: 100%; border-collapse: collapse; }
+    .detail-table tr { border-bottom: 1px solid #f0f0f0; }
+    .detail-table tr:last-child { border-bottom: none; }
+    .detail-table td { padding: 11px 0; font-size: 14px; vertical-align: top; }
+    .detail-table td:first-child { color: #888; font-size: 13px; width: 38%; }
+    .detail-table td:last-child { color: var(--black); font-weight: 600; }
+
+    .route-box { background: linear-gradient(135deg, #f9f9f9, #f5f5f5); border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .route-point { flex: 1; }
+    .route-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--yellow); margin-bottom: 4px; }
+    .route-value { font-size: 15px; font-weight: 700; color: var(--black); line-height: 1.3; }
+    .route-arrow { font-size: 22px; color: #ccc; flex-shrink: 0; }
+
+    .f-label { display: block; font-size: 12px; font-weight: 700; color: #333; margin-bottom: 8px; }
+    .f-input { width: 100%; background: #f9f9f9; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 13px 16px; font-size: 15px; font-weight: 700; color: var(--black); font-family: 'Poppins', sans-serif; transition: .2s; box-sizing: border-box; }
+    .f-input:focus { outline: none; border-color: var(--yellow); background: #fff; box-shadow: 0 0 0 3px rgba(229,167,22,.12); }
+    textarea.f-input { resize: vertical; min-height: 80px; font-weight: 400; font-size: 14px; }
+    .f-group { margin-bottom: 18px; }
+
+    .btn-send { width: 100%; background: var(--yellow); color: var(--black); font-weight: 800; font-size: 16px; padding: 16px; border-radius: 12px; border: none; cursor: pointer; font-family: 'Poppins', sans-serif; transition: .2s; margin-top: 8px; }
+    .btn-send:hover:not(:disabled) { background: #d4960e; transform: translateY(-1px); }
+    .btn-send:disabled { opacity: .6; cursor: wait; }
+
+    .success-card { background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,.08); padding: 48px 32px; text-align: center; display: none; }
+    .success-icon { font-size: 52px; margin-bottom: 16px; }
+    .success-card h2 { font-size: 22px; font-weight: 800; color: var(--black); margin-bottom: 10px; }
+    .success-card p { font-size: 14px; color: #666; line-height: 1.7; }
+
+    .loading-box { text-align: center; padding: 60px 20px; }
+    .loading-box p { font-size: 15px; color: #888; }
+    .error-box { text-align: center; padding: 60px 20px; }
+    .error-box p { font-size: 16px; font-weight: 600; color: #ef4444; }
+  </style>
+  <script src="cookie.js?v=20260418"></script>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <a href="index.html">
-      <div class="logo-text">Taxi Freising<small>Admin Panel</small></div>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <div class="logo-icon">🚖</div>
+      <div class="logo-text">
+        <span class="logo-name">Taxi</span>
+        <span class="logo-sub">Freising</span>
+      </div>
     </a>
+    <div style="font-size: 13px; font-weight: 700; color: var(--yellow); letter-spacing: .05em;">ADMIN PANEL</div>
   </div>
 </header>
 
-<section style="padding: 80px 32px; background: var(--surface);">
-  <div class="container" style="max-width: 640px;">
-    <h1 style="text-align: center; margin-bottom: 48px;">Angebot erstellen</h1>
+<div class="page-hero">
+  <div class="section-label">ADMIN</div>
+  <h1>Angebot <span class="accent">erstellen</span></h1>
+  <p>Festpreis für den Kunden festlegen und per E-Mail senden</p>
+</div>
 
-    <div id="loadingBox" style="text-align: center;">
-      <p>Laden...</p>
+<section class="content-section">
+  <div class="admin-layout">
+
+    <div class="loading-box" id="loadingBox">
+      <p>⏳ Anfrage wird geladen...</p>
     </div>
 
-    <div id="quoteForm" style="display: none;">
-      <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 24px;">
-        <h3 style="margin-bottom: 24px;">Fahrtdetails</h3>
-        <table style="width: 100%; margin-bottom: 24px;">
-          <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary); width: 40%;">Kunde:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="customer">-</td>
-          </tr>
-          <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Von:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="abholort">-</td>
-          </tr>
-          <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Nach:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="zielort">-</td>
-          </tr>
-          <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Datum:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="datum">-</td>
-          </tr>
-          <tr>
-            <td style="padding: 12px 0; color: var(--text-secondary);">Fahrgäste:</td>
-            <td style="padding: 12px 0; color: var(--text); font-weight: 500;" id="fahrgaeste">-</td>
-          </tr>
-        </table>
-      </div>
+    <div class="error-box" id="errorBox" style="display:none;">
+      <p id="errorMsg">❌ Fehler beim Laden</p>
+    </div>
 
-      <div style="background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-        <h3 style="margin-bottom: 24px;">Angebot</h3>
+    <div id="quoteForm" style="display:none;">
 
-        <div class="form-group">
-          <label>Festpreis in Euro *</label>
-          <input type="number" id="price" min="0" step="0.01" placeholder="z.B. 45.00" required>
+      <!-- Route Box -->
+      <div class="route-box">
+        <div class="route-point">
+          <div class="route-label">Von</div>
+          <div class="route-value" id="abholort">–</div>
         </div>
-
-        <div class="form-group">
-          <label>Optionaler Hinweis für Kunden</label>
-          <textarea id="note" placeholder="z.B. Zusätzliche Parkgebühren möglich" style="min-height: 80px;"></textarea>
+        <div class="route-arrow">→</div>
+        <div class="route-point">
+          <div class="route-label">Nach</div>
+          <div class="route-value" id="zielort">–</div>
         </div>
-
-        <button id="submitBtn" class="btn-primary" style="width: 100%; padding: 16px;">
-          Angebot senden
-        </button>
       </div>
+
+      <!-- Fahrtdetails -->
+      <div class="info-card">
+        <div class="card-head">
+          <div class="card-head-icon">👤</div>
+          <div>
+            <div class="card-head-label">Kundendaten</div>
+            <div class="card-head-title" id="customerName">–</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="detail-table">
+            <tr><td>E-Mail</td><td id="customerEmail">–</td></tr>
+            <tr><td>Telefon</td><td id="customerPhone">–</td></tr>
+            <tr><td>Datum &amp; Uhrzeit</td><td id="datum">–</td></tr>
+            <tr><td>Fahrgäste</td><td id="fahrgaeste">–</td></tr>
+            <tr><td>Gepäck</td><td id="gepaeck">–</td></tr>
+            <tr><td>Fahrzeug</td><td id="fahrzeug">–</td></tr>
+            <tr><td>Zahlung</td><td id="zahlung">–</td></tr>
+            <tr><td>Flugnummer</td><td id="flugnummer">–</td></tr>
+            <tr><td>Kindersitz</td><td id="kindersitz">–</td></tr>
+            <tr><td>Anmerkungen</td><td id="anmerkungen">–</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Angebot Form -->
+      <div class="info-card">
+        <div class="card-head">
+          <div class="card-head-icon">€</div>
+          <div>
+            <div class="card-head-label">Festpreisangebot</div>
+            <div class="card-head-title">Preis festlegen &amp; senden</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="f-group">
+            <label class="f-label">Festpreis in Euro *</label>
+            <input type="number" class="f-input" id="price" min="0" step="0.01" placeholder="z.B. 85.00" required>
+          </div>
+          <div class="f-group">
+            <label class="f-label">Optionaler Hinweis für Kunden</label>
+            <textarea class="f-input" id="note" placeholder="z.B. Preis gilt für 1 Person, jede weitere Person +10€"></textarea>
+          </div>
+          <button class="btn-send" id="submitBtn">✉️ Angebot per E-Mail senden</button>
+        </div>
+      </div>
+
     </div>
 
-    <div id="successBox" style="display: none;">
-      <div style="background: var(--green-light); border: 2px solid var(--green); border-radius: 12px; padding: 32px; text-align: center;">
-        <h2 style="color: var(--green); margin-bottom: 16px;">✓ Angebot versendet!</h2>
-        <p style="color: var(--text-secondary);">Das Angebot wurde per E-Mail an den Kunden gesendet.</p>
-      </div>
+    <!-- Success -->
+    <div class="success-card" id="successBox">
+      <div class="success-icon">✅</div>
+      <h2>Angebot versendet!</h2>
+      <p>Der Kunde wurde per E-Mail über das Festpreisangebot informiert.<br>Er kann das Angebot mit einem Klick bestätigen.</p>
     </div>
+
   </div>
 </section>
 
-<footer>
+<footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div>
-        <h4>Taxi Freising</h4>
-        <p>Ihr zuverlässiger Taxiservice in Freising</p>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span>🚖</span>
+          <div><strong>Taxi</strong> Freising</div>
+        </div>
+        <p>N &amp; N Taxi GbR<br>Eisvogelweg 2<br>85356 Freising</p>
+        <div class="footer-contact">
+          <a href="tel:+4915141620000">📞 0151 4162 0000</a>
+          <a href="mailto:osman@taxifreising.de">✉️ osman@taxifreising.de</a>
+        </div>
       </div>
-      <div>
-        <h4>Kontakt</h4>
-        <p>
-          <a href="tel:+4915141620000">+49 151 4162 0000</a><br>
-          <a href="mailto:info@taxifreising.de">info@taxifreising.de</a>
-        </p>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="preise.html">Tarife</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li><a href="agb.html">AGB</a></li>
+        </ul>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;margin-top:32px;text-align:center;color:rgba(255,255,255,0.6);">
-      <p>&copy; 2026 Taxi Freising. Alle Rechte vorbehalten.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Taxi Freising – N &amp; N Taxi GbR. Alle Rechte vorbehalten.</p>
     </div>
   </div>
 </footer>
 
 <script>
-const API_URL = 'http://localhost:4002/api';
+const API_URL = 'https://taxifreising.de/api';
 
 document.addEventListener('DOMContentLoaded', async function() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get('token');
 
   if (!token) {
-    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Ungültiger Link</p>';
+    document.getElementById('loadingBox').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorMsg').textContent = '❌ Ungültiger Link – kein Token gefunden';
     return;
   }
 
@@ -116,16 +216,43 @@ document.addEventListener('DOMContentLoaded', async function() {
     const res = await fetch(`${API_URL}/inquiries/quote/${token}`);
     const data = await res.json();
 
-    if (!res.ok) {
-      document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Anfrage nicht gefunden</p>';
+    if (!res.ok || data.error) {
+      document.getElementById('loadingBox').style.display = 'none';
+      document.getElementById('errorBox').style.display = 'block';
+      document.getElementById('errorMsg').textContent = '❌ Anfrage nicht gefunden';
       return;
     }
 
-    document.getElementById('customer').textContent = `${data.anrede} ${data.vorname} ${data.nachname}`;
-    document.getElementById('abholort').textContent = data.abholort;
-    document.getElementById('zielort').textContent = data.zielort;
-    document.getElementById('datum').textContent = data.abholdatum + ' um ' + data.abholzeit + ' Uhr';
-    document.getElementById('fahrgaeste').textContent = data.fahrgaeste + ' Person(en)';
+    // Fill data
+    document.getElementById('abholort').textContent = data.abholort || '–';
+    document.getElementById('zielort').textContent = data.zielort || '–';
+    document.getElementById('customerName').textContent = `${data.anrede || ''} ${data.vorname || ''} ${data.nachname || ''}`.trim();
+    document.getElementById('customerEmail').textContent = data.email || '–';
+    document.getElementById('customerPhone').textContent = data.phone || '–';
+    document.getElementById('datum').textContent = (data.abholdatum || '–') + ' um ' + (data.abholzeit || '–') + ' Uhr';
+    document.getElementById('fahrgaeste').textContent = (data.fahrgaeste || '–') + ' Person(en)';
+    document.getElementById('gepaeck').textContent = data.gepaeck ? data.gepaeck + ' Stück' : '–';
+    document.getElementById('fahrzeug').textContent = data.fahrzeug || '–';
+    document.getElementById('zahlung').textContent = data.zahlung || '–';
+    document.getElementById('flugnummer').textContent = data.flugnummer || '–';
+    document.getElementById('anmerkungen').textContent = data.anmerkungen || '–';
+
+    const ks = [];
+    if (data.kindersitz_baby > 0) ks.push(`👶 Babyschale ×${data.kindersitz_baby}`);
+    if (data.kindersitz_kinder > 0) ks.push(`🪑 Kindersitz ×${data.kindersitz_kinder}`);
+    if (data.kindersitz_sitz > 0) ks.push(`📦 Sitzerhöhung ×${data.kindersitz_sitz}`);
+    document.getElementById('kindersitz').textContent = ks.length ? ks.join(', ') : '–';
+
+    if (data.status === 'quoted' || data.status === 'confirmed') {
+      document.getElementById('loadingBox').style.display = 'none';
+      document.getElementById('quoteForm').style.display = 'none';
+      document.getElementById('successBox').style.display = 'block';
+      document.querySelector('.success-card h2').textContent = data.status === 'confirmed' ? '✅ Buchung bestätigt!' : '✅ Angebot bereits versendet';
+      document.querySelector('.success-card p').textContent = data.status === 'confirmed'
+        ? `Der Kunde hat das Angebot von ${data.quoted_price} € bestätigt.`
+        : `Das Angebot über ${data.quoted_price} € wurde bereits versendet.`;
+      return;
+    }
 
     document.getElementById('loadingBox').style.display = 'none';
     document.getElementById('quoteForm').style.display = 'block';
@@ -134,8 +261,8 @@ document.addEventListener('DOMContentLoaded', async function() {
       const price = document.getElementById('price').value;
       const note = document.getElementById('note').value;
 
-      if (!price) {
-        alert('Bitte geben Sie einen Preis ein');
+      if (!price || parseFloat(price) <= 0) {
+        alert('Bitte geben Sie einen gültigen Preis ein.');
         return;
       }
 
@@ -153,18 +280,22 @@ document.addEventListener('DOMContentLoaded', async function() {
           document.getElementById('quoteForm').style.display = 'none';
           document.getElementById('successBox').style.display = 'block';
         } else {
-          alert('Fehler beim Versenden. Bitte versuchen Sie es später erneut.');
+          const err = await submitRes.json();
+          alert('Fehler: ' + (err.error || 'Unbekannter Fehler'));
           this.disabled = false;
-          this.textContent = 'Angebot senden';
+          this.textContent = '✉️ Angebot per E-Mail senden';
         }
       } catch (err) {
-        alert('Verbindungsfehler');
+        alert('Verbindungsfehler. Bitte prüfen Sie Ihre Verbindung.');
         this.disabled = false;
-        this.textContent = 'Angebot senden';
+        this.textContent = '✉️ Angebot per E-Mail senden';
       }
     });
+
   } catch (err) {
-    document.getElementById('loadingBox').innerHTML = '<p style="color: red;">Fehler beim Laden</p>';
+    document.getElementById('loadingBox').style.display = 'none';
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorMsg').textContent = '❌ Verbindungsfehler – bitte Seite neu laden';
   }
 });
 </script>

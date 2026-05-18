@@ -204,7 +204,7 @@ ul { list-style: none; }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.62) 100%);
 }
 
 .hero-content {
@@ -215,6 +215,17 @@ ul { list-style: none; }
   max-width: 900px;
   padding: 0 24px;
 }
+
+.hero-phone {
+  display: inline-block;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.hero-phone:hover { color: var(--yellow); }
 
 .hero-welcome {
   font-size: 16px;
@@ -388,7 +399,18 @@ ul { list-style: none; }
 }
 .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
 
-.feature-icon { font-size: 40px; margin-bottom: 16px; }
+.feature-icon {
+  width: 72px;
+  height: 72px;
+  background: var(--yellow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 20px;
+  flex-shrink: 0;
+}
 
 .feature-card h3 {
   font-size: 17px;
@@ -588,7 +610,19 @@ ul { list-style: none; }
   gap: 10px;
 }
 
-.faq-icon { font-size: 24px; }
+.faq-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--yellow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--black);
+  flex-shrink: 0;
+}
 
 .faq-item h4 {
   font-size: 16px;
