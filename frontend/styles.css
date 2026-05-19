@@ -113,6 +113,12 @@ ul { list-style: none; }
 
 .logo-icon { font-size: 28px; }
 
+.logo-img {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
 .logo-text {
   display: flex;
   flex-direction: column;
