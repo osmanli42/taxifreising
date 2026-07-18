@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { initializeDatabase } from './db';
+import { initializeDatabase, query } from './db';
 import inquiriesRouter from './routes/inquiries';
 
 dotenv.config();
@@ -28,8 +28,15 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+app.get('/api/health', async (req, res) => {
+  try {
+    const stuck = await query<{ n: number }>(
+      `SELECT COUNT(*) AS n FROM tf_inquiries WHERE status='new' AND created_at <= NOW() - INTERVAL 2 HOUR`
+    );
+    res.json({ status: 'ok', db: true, stuck_inquiries: stuck[0].n, timestamp: new Date().toISOString() });
+  } catch (err: any) {
+    res.status(500).json({ status: 'fail', db: false, error: err.message, timestamp: new Date().toISOString() });
+  }
 });
 
 app.get('/admin/quote/:token', (req, res) => {
