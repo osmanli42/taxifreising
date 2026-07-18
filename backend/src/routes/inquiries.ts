@@ -9,6 +9,15 @@ function getResend() {
   return new Resend(process.env.RESEND_API_KEY || '');
 }
 
+// Resend's SDK resolves { data, error } instead of throwing on API errors
+// (invalid key, unverified domain, etc.) — without this check those failures
+// pass silently and the caller gets a fake "success".
+async function sendMail(resend: Resend, params: Parameters<Resend['emails']['send']>[0]) {
+  const { data, error } = await resend.emails.send(params);
+  if (error) throw new Error(`Resend: ${error.message}`);
+  return data;
+}
+
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'info@taxifreising.de';
 const SITE_URL = process.env.SITE_URL || 'http://localhost:4002';
 const API_URL = process.env.API_URL || 'http://localhost:4002';
@@ -164,7 +173,7 @@ router.post('/', async (req, res) => {
 
     const resend = getResend();
 
-    await resend.emails.send({
+    await sendMail(resend, {
       from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: ADMIN_EMAIL,
       subject: `Neue Anfrage: ${vorname} ${nachname} | ${abholort} → ${zielort}`,
@@ -212,7 +221,7 @@ router.post('/', async (req, res) => {
       `),
     });
 
-    await resend.emails.send({
+    await sendMail(resend, {
       from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: email,
       subject: 'Ihre Anfrage ist eingegangen – Taxi Freising',
@@ -306,7 +315,7 @@ router.post('/quote/:token', async (req, res) => {
 
     const resend = getResend();
 
-    await resend.emails.send({
+    await sendMail(resend, {
       from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: inq.email,
       subject: `Ihr Angebot: ${price} € – Taxi Freising`,
@@ -371,6 +380,7 @@ router.post('/quote/:token', async (req, res) => {
 
     res.json({ success: true });
   } catch (err: any) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -390,7 +400,7 @@ router.post('/confirm/:confirm_token', async (req, res) => {
 
     const resend = getResend();
 
-    await resend.emails.send({
+    await sendMail(resend, {
       from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: ADMIN_EMAIL,
       subject: `Buchung bestätigt: ${inq.vorname} ${inq.nachname} – ${inq.quoted_price} €`,
@@ -429,7 +439,7 @@ router.post('/confirm/:confirm_token', async (req, res) => {
       `),
     });
 
-    await resend.emails.send({
+    await sendMail(resend, {
       from: 'Taxi Freising <info@flughafen-muenchen.taxi>',
       to: inq.email,
       subject: `Buchungsbestätigung – Ihre Fahrt am ${inq.abholdatum}`,
@@ -493,6 +503,7 @@ router.post('/confirm/:confirm_token', async (req, res) => {
 
     res.json({ success: true, name: `${inq.vorname} ${inq.nachname}`, abholort: inq.abholort, zielort: inq.zielort, price: inq.quoted_price });
   } catch (err: any) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
